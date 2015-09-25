@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <preference for="\Magento\Directory\Model\Resource\Region\Collection" type="Magejapan\Localize\Model\Resource\Directory\Region\Collection"/>
+
+    <type name="Magento\Directory\Model\PriceCurrency">
+        <plugin name="modifyCurrencyExpression" type="Magejapan\Localize\Model\Directory\Plugin\ModifyPrice" />
+    </type>
+
+    <type name="Magento\Eav\Model\Entity\Setup\PropertyMapper\Composite">
+        <arguments>
+            <argument name="propertyMappers" xsi:type="array">
+                <item name="localize_setup" xsi:type="string">Magento\Customer\Model\Resource\Setup\PropertyMapper</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

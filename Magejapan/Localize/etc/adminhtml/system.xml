@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Config/etc/system_file.xsd">
+    <system>
+        <tab id="localize" translate="label" sortOrder="999">
+            <label>Japanese Localize</label>
+        </tab>
+        <section id="localize" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Name &amp; Address configuration</label>
+            <tab>localize</tab>
+            <resource>Magejapan_Localize::config_format</resource>
+            <group id="kana" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Kana configuration</label>
+                <field id="use_kana" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Use Kana</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="require_kana" translate="label" type="select" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Require Kana</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="use_kana">1</field>
+                    </depends>
+                </field>
+                <field id="use_hiragana" translate="label" type="select" sortOrder="3" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Allow Kana type</label>
+                    <source_model>Magejapan\Localize\Model\Config\Source\Kana</source_model>
+                    <depends>
+                        <field id="use_kana">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="address" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Address format option</label>
+                <field id="show_address" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Show address on customer registration form</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="hide_country" translate="label" type="select" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Hide country field</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="default_country" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Default country</label>
+                    <depends>
+                        <field id="hide_country">1</field>
+                    </depends>
+                </field>
+                <field id="change_fields_order" translate="label" type="select" sortOrder="4" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Use Japanese style for address fields</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

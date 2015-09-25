@@ -1,0 +1,35 @@
+{
+    "name":"Magento-Japan/m2-localize",
+    "type":"magento2-module",
+    "extra": {
+        "map": [
+            [
+                "*",
+                "Magejapan/Localize"
+            ]
+        ]
+    },
+    "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+                ],
+    "description":"Magento2 extension for Japanese localization.",
+    "version":"1.0.0-beta",
+    "authors":[
+        {
+            "name":"Hirokazu Nishi",
+            "email":"nishi@principle-works.jp",
+            "homepage":"https://principle-works.jp/",
+            "role":"developer"
+        }
+    ],
+    "require": {
+        "php": "~5.5.0|~5.6.0",
+        "magento/module-store": "1.0.0-beta",
+        "magento/module-backend": "1.0.0-beta",
+        "magento/module-media-storage": "1.0.0-beta",
+        "magento/framework": "1.0.0-beta",
+        "lib-libxml": "*",
+        "magento/magento-composer-installer": "*"
+    }
+}
