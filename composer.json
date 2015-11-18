@@ -1,14 +1,6 @@
 {
     "name":"magento-japan/m2-jplocalize",
     "type":"magento2-module",
-    "extra": {
-        "map": [
-            [
-                "*",
-                "Magejapan/Localize"
-            ]
-        ]
-    },
     "license": [
         "OSL-3.0",
         "AFL-3.0"
