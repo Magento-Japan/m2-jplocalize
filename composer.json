@@ -25,7 +25,7 @@
     ],
     "require": {
         "php": "~5.5.0|~5.6.0",
-        "magento/framework": "1.0.0-beta",
+        "magento/framework": "~1.0.0-beta",
         "lib-libxml": "*",
         "magento/magento-composer-installer": "*"
     }
