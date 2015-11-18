@@ -30,5 +30,13 @@
         "magento/module-media-storage": "100.0.*",
         "magento/framework": "100.0.*",
         "lib-libxml": "*"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Magejapan\\Localize\\": ""
+        }
     }
 }
