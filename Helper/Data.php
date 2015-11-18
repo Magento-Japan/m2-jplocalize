@@ -1,6 +1,8 @@
 <?php
 namespace Magejapan\Localize\Helper;
 
+use Magento\Framework\App\Config\ScopeConfigInterface;
+
 class Data extends \Magento\Framework\App\Helper\AbstractHelper
 {
     /**
@@ -86,7 +88,6 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      * @param \Magento\Directory\Model\ResourceModel\Region\CollectionFactory $regCollectionFactory,
      * @param \Magento\Store\Model\StoreManagerInterface $storeManager
      * @param \Magento\Directory\Model\CurrencyFactory $currencyFactory
-     * @param \Magento\Framework\App\Config\ScopeConfigInterface $config
      */
     public function __construct(
         \Magento\Framework\App\Helper\Context $context,
@@ -94,8 +95,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         \Magento\Directory\Model\ResourceModel\Country\Collection $countryCollection,
         \Magento\Directory\Model\ResourceModel\Region\CollectionFactory $regCollectionFactory,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
-        \Magento\Directory\Model\CurrencyFactory $currencyFactory,
-        \Magento\Framework\App\Config\ScopeConfigInterface $config
+        \Magento\Directory\Model\CurrencyFactory $currencyFactory
     ) {
         parent::__construct($context);
         $this->_configCacheType = $configCacheType;
@@ -103,7 +103,6 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $this->_regCollectionFactory = $regCollectionFactory;
         $this->_storeManager = $storeManager;
         $this->_currencyFactory = $currencyFactory;
-        $this->_config = $config;
     }
 
     /**
