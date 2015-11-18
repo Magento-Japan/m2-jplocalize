@@ -11,7 +11,7 @@ class Collection extends \Magento\Directory\Model\ResourceModel\Region\Collectio
      */
     protected function _construct()
     {
-        $this->_init('Magento\Directory\Model\Region', 'Magento\Directory\Model\Resource\Region');
+        $this->_init('Magento\Directory\Model\Region', 'Magento\Directory\Model\ResourceModel\Region');
 
         $this->_countryTable = $this->getTable('directory_country');
         $this->_regionNameTable = $this->getTable('directory_country_region_name');
