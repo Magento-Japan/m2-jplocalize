@@ -1,5 +1,5 @@
 {
-    "name":"Magento-Japan/m2-localize",
+    "name":"magento-japan/m2-jplocalize",
     "type":"magento2-module",
     "extra": {
         "map": [
