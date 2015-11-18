@@ -2,7 +2,7 @@
 namespace Magejapan\Localize\Model\Resource\Directory\Region;
 
 
-class Collection extends \Magento\Directory\Model\Resource\Region\Collection
+class Collection extends \Magento\Directory\Model\ResourceModel\Region\Collection
 {
     /**
      * Define main, country, locale region name tables
