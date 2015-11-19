@@ -81,7 +81,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      * @param \Magento\Directory\Model\ResourceModel\Region\CollectionFactory $regCollectionFactory,
      * @param \Magento\Store\Model\StoreManagerInterface $storeManager
      * @param \Magento\Directory\Model\CurrencyFactory $currencyFactory
-     * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
+     * @param \Magento\Framework\App\Config\ScopeConfigInterface $config
      */
     public function __construct(
         \Magento\Framework\App\Helper\Context $context,
@@ -98,7 +98,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $this->_regCollectionFactory = $regCollectionFactory;
         $this->_storeManager = $storeManager;
         $this->_currencyFactory = $currencyFactory;
-        $this->_config = $scopeConfig;
+        $this->scopeConfig = $scopeConfig;
     }
 
     /**
@@ -206,7 +206,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     {
         if (null === $this->_optZipCountries) {
             $value = trim(
-                $this->_config->getValue(
+                $this->scopeConfig->getValue(
                     self::OPTIONAL_ZIP_COUNTRIES_CONFIG_PATH,
                     \Magento\Store\Model\ScopeInterface::SCOPE_STORE
                 )
@@ -240,7 +240,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     public function getCountriesWithStatesRequired($asJson = false)
     {
         $value = trim(
-            $this->_config->getValue(
+            $this->scopeConfig->getValue(
                 self::XML_PATH_STATES_REQUIRED,
                 \Magento\Store\Model\ScopeInterface::SCOPE_STORE
             )
@@ -259,7 +259,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      */
     public function isShowNonRequiredState()
     {
-        return (bool)$this->_config->getValue(
+        return (bool)$this->scopeConfig->getValue(
             self::XML_PATH_DISPLAY_ALL_STATES,
             \Magento\Store\Model\ScopeInterface::SCOPE_STORE
         );
@@ -287,6 +287,6 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      */
     public function getBaseCurrencyCode()
     {
-        return $this->_config->getValue(\Magento\Directory\Model\Currency::XML_PATH_CURRENCY_BASE, 'default');
+        return $this->scopeConfig->getValue(\Magento\Directory\Model\Currency::XML_PATH_CURRENCY_BASE, 'default');
     }
 }
