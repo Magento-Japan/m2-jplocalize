@@ -8,10 +8,14 @@ class ModifyPrice
 
     public function aroundRound(PriceCurrency  $subject,
                                 \Closure $proceed,
-                                $object)
+                                $amount,
+                                $precision)
     {
         //todo: detect currency.
-        return floor($object);
+        if($subject->getCurrency()->getCode() == 'JPY') {
+            return floor($amount);
+        }
+        return $proceed($amount, $precision);
     }
 
     public function aroundFormat(PriceCurrency  $subject,
