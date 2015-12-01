@@ -16,10 +16,16 @@ class ModifyPrice
 
     public function aroundFormat(PriceCurrency  $subject,
                                  \Closure $proceed,
-                                $object)
+                                 $amount,
+                                 $includeContainer,
+                                 $precision = \Magento\Directory\Model\PriceCurrency::DEFAULT_PRECISION,
+                                 $scope = null,
+                                 $currency = null
+    )
     {
-        //todo: execute format with no precision
-        //$subject->getCurrency()
-        return $object;
+        if($subject->getCurrency()->getCode() == 'JPY') {
+            $precision = 0;
+        }
+        return $proceed($amount, $includeContainer, $precision, $scope, $currency);
     }
 }
