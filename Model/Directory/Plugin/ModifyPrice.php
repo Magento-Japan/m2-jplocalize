@@ -9,7 +9,7 @@ class ModifyPrice
     public function aroundRound(PriceCurrency  $subject,
                                 \Closure $proceed,
                                 $amount,
-                                $precision)
+                                $precision=2)
     {
         //todo: detect currency.
         if($subject->getCurrency()->getCode() == 'JPY') {
