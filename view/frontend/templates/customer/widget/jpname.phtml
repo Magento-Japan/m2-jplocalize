@@ -32,7 +32,7 @@ $suffix = $block->showSuffix();
     <div class="control">
         <div class="fields group <?php echo 2 + intval($prefix) + intval($middle) + intval($suffix) ?>">
     <?php endif; ?>
-    <?php if ($prefix): ?>$
+    <?php if ($prefix): ?>
         <div class="field name prefix<?php if ($block->isPrefixRequired()) echo ' required' ?>">
             <label class="label" for="<?php echo $block->getFieldId('prefix') ?>">
                 <span><?php echo $block->getStoreLabel('prefix') ?></span>
