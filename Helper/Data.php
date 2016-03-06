@@ -101,7 +101,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     /**
      * Retrieve region collection
      *
-     * @return \Magento\Directory\Model\Resource\Region\Collection
+     * @return \Magento\Directory\Model\ResourceModel\Region\Collection
      */
     public function getRegionCollection()
     {
@@ -115,7 +115,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     /**
      * Retrieve country collection
      *
-     * @return \Magento\Directory\Model\Resource\Country\Collection
+     * @return \Magento\Directory\Model\ResourceModel\Country\Collection
      */
     public function getCountryCollection()
     {
