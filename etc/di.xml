@@ -5,9 +5,9 @@
     <type name="Magento\Directory\Model\PriceCurrency">
         <plugin name="modifyCurrencyExpression" type="Magejapan\Localize\Model\Directory\Plugin\ModifyPrice" />
     </type>
-    <type name="Magento\Framework\Locale\Format">
-        <plugin name="modifyJsFormat" type="Magejapan\Localize\Model\Locale\Plugin\ModifyJsFormat" />
-    </type>
+    <!--<type name="Magento\Framework\Locale\Format">-->
+        <!--<plugin name="modifyJsFormat" type="Magejapan\Localize\Model\Locale\Plugin\ModifyJsFormat" />-->
+    <!--</type>-->
 
     <type name="Magento\Eav\Model\Entity\Setup\PropertyMapper\Composite">
         <arguments>
