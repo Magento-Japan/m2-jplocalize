@@ -21,7 +21,7 @@ class ModifyPrice
     public function aroundFormat(PriceCurrency  $subject,
                                  \Closure $proceed,
                                  $amount,
-                                 $includeContainer,
+                                 $includeContainer = false,
                                  $precision = \Magento\Directory\Model\PriceCurrency::DEFAULT_PRECISION,
                                  $scope = null,
                                  $currency = null
