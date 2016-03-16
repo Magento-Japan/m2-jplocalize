@@ -43,7 +43,7 @@ class ModifyPrice
         $currency = null
     )
     {
-        if($subject->getCode() == 'JPY') {
+        if($subject->getCurrency()->getCode() == 'JPY') {
             $precision = 0;
         }
         return $proceed($amount, $includeContainer, $precision, $scope, $currency);
