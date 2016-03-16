@@ -2,6 +2,7 @@
 namespace Magejapan\Localize\Model\Directory\Plugin;
 
 use Magento\Directory\Model\PriceCurrency;
+use Magento\Directory\Model\Currency;
 
 class ModifyPrice
 {
@@ -18,18 +19,18 @@ class ModifyPrice
         return $proceed($amount, $precision);
     }
 
-    public function aroundFormat(PriceCurrency  $subject,
+    public function aroundFormatPrecision(Currency  $subject,
                                  \Closure $proceed,
-                                 $amount,
-                                 $includeContainer = false,
-                                 $precision = \Magento\Directory\Model\PriceCurrency::DEFAULT_PRECISION,
-                                 $scope = null,
-                                 $currency = null
+                                $price,
+                                $precision = 2,
+                                $options,
+                                $includeContainer,
+                                $addBrackets
     )
     {
-        if($subject->getCurrency()->getCode() == 'JPY') {
+        if($subject->getCode() == 'JPY') {
             $precision = 0;
         }
-        return $proceed($amount, $includeContainer, $precision, $scope, $currency);
+        return $proceed($price, $precision, $options, $includeContainer, $addBrackets);
     }
 }
