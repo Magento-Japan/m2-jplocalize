@@ -6,6 +6,13 @@ use Magento\Directory\Model\PriceCurrency;
 class ModifyPrice
 {
 
+    /**
+     * @param \Magento\Directory\Model\PriceCurrency $subject
+     * @param \Closure $proceed
+     * @param $amount
+     * @param int $precision
+     * @return float
+     */
     public function aroundRound(PriceCurrency  $subject,
                                 \Closure $proceed,
                                 $amount,
@@ -18,6 +25,16 @@ class ModifyPrice
         return $proceed($amount, $precision);
     }
 
+    /**
+     * @param \Magento\Directory\Model\PriceCurrency $subject
+     * @param \Closure $proceed
+     * @param $amount
+     * @param $includeContainer
+     * @param int $precision
+     * @param null $scope
+     * @param null $currency
+     * @return mixed
+     */
     public function aroundFormat(PriceCurrency  $subject,
         \Closure $proceed,
         $amount,
