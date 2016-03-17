@@ -25,11 +25,12 @@ class ModifyPrice
         return $proceed($amount, $precision);
     }
 
+
     /**
      * @param \Magento\Directory\Model\PriceCurrency $subject
      * @param \Closure $proceed
      * @param $amount
-     * @param $includeContainer
+     * @param bool $includeContainer
      * @param int $precision
      * @param null $scope
      * @param null $currency
@@ -38,7 +39,7 @@ class ModifyPrice
     public function aroundFormat(PriceCurrency  $subject,
         \Closure $proceed,
         $amount,
-        $includeContainer,
+        $includeContainer = true,
         $precision = \Magento\Directory\Model\PriceCurrency::DEFAULT_PRECISION,
         $scope = null,
         $currency = null
