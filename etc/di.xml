@@ -4,6 +4,7 @@
 
     <type name="Magento\Directory\Model\Currency">
         <plugin name="modifyCurrencyFormat" type="Magejapan\Localize\Model\Directory\Plugin\ModifyPrice" />
+        <plugin name="modifyCurrencyFormat" type="Magejapan\Localize\Model\Directory\Plugin\ModifyPrecision" />
     </type>
     <type name="Magento\Directory\Model\PriceCurrency">
         <plugin name="modifyCurrencyExpression" type="Magejapan\Localize\Model\Directory\Plugin\ModifyPrice" />
