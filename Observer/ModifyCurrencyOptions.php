@@ -1,5 +1,5 @@
 <?php
-namespace Magejapan\Localize\CurrencySymbol\Observer;
+namespace Magejapan\Localize\Observer;
 
 use Magento\Framework\Locale\Currency;
 use Magento\Framework\Event\ObserverInterface;
