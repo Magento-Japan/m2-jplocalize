@@ -3,28 +3,23 @@ namespace Magejapan\Localize\Model\Directory\Plugin;
 
 use Magento\Directory\Model\PriceCurrency;
 
-class ModifyPrice
+class Format
 {
 
     /**
-     * @param \Magento\Directory\Model\PriceCurrency $subject
-     * @param \Closure $proceed
-     * @param $amount
-     * @param int $precision
-     * @return float
+     * @var \Magento\Framework\App\Config\ScopeConfigInterface
      */
-    public function aroundRound(PriceCurrency  $subject,
-                                \Closure $proceed,
-                                $amount,
-                                $precision=2)
-    {
-        //todo: detect currency.
-        if($subject->getCurrency()->getCode() == 'JPY') {
-            return floor($amount);
-        }
-        return $proceed($amount, $precision);
-    }
+    protected $_scopeConfig;
 
+    /**
+     * ModifyPrice constructor.
+     * @param \Magento\Framework\View\Element\Context $context
+     */
+    public function __construct(
+        \Magento\Framework\View\Element\Context $context
+    ) {
+        $this->_scopeConfig = $context->getScopeConfig();
+    }
 
     /**
      * @param \Magento\Directory\Model\PriceCurrency $subject
@@ -46,7 +41,7 @@ class ModifyPrice
     )
     {
         if($subject->getCurrency()->getCode() == 'JPY') {
-            $precision = 0;
+            $precision = '0';
         }
         return $proceed($amount, $includeContainer, $precision, $scope, $currency);
     }

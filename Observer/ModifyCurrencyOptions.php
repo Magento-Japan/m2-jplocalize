@@ -46,7 +46,7 @@ class ModifyCurrencyOptions implements ObserverInterface
     {
         $currencyOptions = [];
         if ($baseCode == 'JPY') {
-            $currencyOptions['precision'] = 0;
+            $currencyOptions['precision'] = '0';
         }
 
         return array_merge($originalOptions, $currencyOptions);

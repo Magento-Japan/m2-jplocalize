@@ -3,14 +3,14 @@
     <preference for="Magento\Directory\Model\ResourceModel\Region\Collection" type="Magejapan\Localize\Model\ResourceModel\Directory\Region\Collection"/>
 
     <type name="Magento\Directory\Model\Currency">
-        <plugin name="modifyCurrencyFormat" type="Magejapan\Localize\Model\Directory\Plugin\ModifyPrice" />
-        <plugin name="modifyCurrencyFormat" type="Magejapan\Localize\Model\Directory\Plugin\ModifyPrecision" />
+        <plugin name="modify_precision" type="Magejapan\Localize\Model\Directory\Plugin\Precision" />
     </type>
     <type name="Magento\Directory\Model\PriceCurrency">
-        <plugin name="modifyCurrencyExpression" type="Magejapan\Localize\Model\Directory\Plugin\ModifyPrice" />
+        <plugin name="modify_format" type="Magejapan\Localize\Model\Directory\Plugin\Format" />
+        <plugin name="modify_round" type="Magejapan\Localize\Model\Directory\Plugin\PriceRound" />
     </type>
     <type name="Magento\Framework\Locale\Format">
-        <plugin name="modifyPriceFormat" type="Magejapan\Localize\Model\Locale\Plugin\ModifyPriceFormat" />
+        <plugin name="modify_price_format" type="Magejapan\Localize\Model\Locale\Plugin\ModifyPriceFormat" />
     </type>
 
     <type name="Magento\Eav\Model\Entity\Setup\PropertyMapper\Composite">

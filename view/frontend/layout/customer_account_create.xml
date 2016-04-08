@@ -3,8 +3,11 @@
     <body>
         <referenceContainer name="content">
             <referenceBlock name="customer_form_register">
-                <action method="setTemplate">
+                <action method="setTemplate" ifconfig="localize/address/change_fields_order">
                     <argument name="template" xsi:type="string">Magejapan_Localize::customer/form/jpregister.phtml</argument>
+                </action>
+                <action method="setShowAddressFields" ifconfig="localize/address/show_address">
+                    <argument name="show_address" xsi:type="boolean">true</argument>
                 </action>
             </referenceBlock>
         </referenceContainer>

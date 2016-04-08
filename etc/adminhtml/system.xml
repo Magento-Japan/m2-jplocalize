@@ -41,15 +41,17 @@
                     <label>Hide country field</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                <field id="default_country" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="0" showInStore="0">
-                    <label>Default country</label>
-                    <depends>
-                        <field id="hide_country">1</field>
-                    </depends>
-                </field>
                 <field id="change_fields_order" translate="label" type="select" sortOrder="4" showInDefault="1" showInWebsite="0" showInStore="0">
                     <label>Use Japanese style for address fields</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+        <section id="tax">
+            <group id="calculation">
+                <field id="round" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Tax Rounding Method</label>
+                    <source_model>Magejapan\Localize\Model\Config\Source\Round</source_model>
                 </field>
             </group>
         </section>

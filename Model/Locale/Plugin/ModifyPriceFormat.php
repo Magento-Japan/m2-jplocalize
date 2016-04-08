@@ -48,9 +48,9 @@ class ModifyPriceFormat
 
         $result = $proceed($localeCode, $currencyCode);
 
-        if($currency != 'JPY') {
-            $result['precision'] = 0;
-            $result['requiredPrecision'] = 0;
+        if($currency->getCode() == 'JPY') {
+            $result['precision'] = '0';
+            $result['requiredPrecision'] = '0';
         }
         return $result;
     }

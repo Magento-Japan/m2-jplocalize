@@ -53,7 +53,7 @@
             <?php echo $_gender->setGender($block->getFormData()->getGender())->toHtml() ?>
         <?php endif ?>
     </fieldset>
-    <?php //if ($block->getShowAddressFields()): ?>
+    <?php if ($block->getShowAddressFields()): ?>
         <fieldset class="fieldset address">
             <legend class="legend"><span><?php echo __('Address Information') ?></span></legend><br>
             <input type="hidden" name="create_address" value="1" />
@@ -71,12 +71,16 @@
                 </div>
             </div>
 
+            <?php if($this->getConfig('localize/address/hide_country')):?>
+                    <input type="hidden" name="country_id" value="<?php echo $this->getConfig('general/country/default');?>" id="country" data-validate="{'validate-select':true}" area-required="true" />
+            <?php else:?>
             <div class="field country required">
                 <label for="country" class="label"><span><?php echo __('Country') ?></span></label>
                 <div class="control">
                     <?php echo $block->getCountryHtmlSelect() ?>
                 </div>
             </div>
+            <?php endif;?>
 
             <div class="field region required">
                 <label for="region_id" class="label"><span><?php echo __('State/Province') ?></span></label>
@@ -134,7 +138,7 @@
             <input type="hidden" name="default_shipping" value="1">
         </fieldset>
 
-    <?php //endif; ?>
+    <?php endif; ?>
     <fieldset class="fieldset create account" data-hasrequired="<?php echo __('* Required Fields') ?>">
         <legend class="legend"><span><?php echo __('Sign-in Information') ?></span></legend><br>
 
@@ -192,7 +196,7 @@ require([
 
 });
 </script>
-<?php //if ($block->getShowAddressFields()): ?>
+<?php if ($block->getShowAddressFields()): ?>
 <script type="text/x-magento-init">
     {
         "#country": {
@@ -209,4 +213,4 @@ require([
         }
     }
 </script>
-<?php //endif; ?>
+<?php endif; ?>
