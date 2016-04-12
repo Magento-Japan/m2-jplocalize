@@ -1,5 +1,5 @@
 <?php
-namespace Magejapan\Localize\Model\Config\Source;
+namespace Veriteworks\Localize\Model\Config\Source;
 
 class Kana implements \Magento\Framework\Option\ArrayInterface
 {

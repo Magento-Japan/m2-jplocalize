@@ -9,7 +9,7 @@
             <class>separator-top</class>
             <label>Name &amp; Address configuration</label>
             <tab>localize</tab>
-            <resource>Magejapan_Localize::config_format</resource>
+            <resource>Veriteworks_Localize::config_format</resource>
             <group id="kana" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
                 <label>Kana configuration</label>
                 <field id="use_kana" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
@@ -25,7 +25,7 @@
                 </field>
                 <field id="use_hiragana" translate="label" type="select" sortOrder="3" showInDefault="1" showInWebsite="0" showInStore="0">
                     <label>Allow Kana type</label>
-                    <source_model>Magejapan\Localize\Model\Config\Source\Kana</source_model>
+                    <source_model>Veriteworks\Localize\Model\Config\Source\Kana</source_model>
                     <depends>
                         <field id="use_kana">1</field>
                     </depends>
@@ -51,7 +51,7 @@
             <group id="calculation">
                 <field id="round" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Tax Rounding Method</label>
-                    <source_model>Magejapan\Localize\Model\Config\Source\Round</source_model>
+                    <source_model>Veriteworks\Localize\Model\Config\Source\Round</source_model>
                 </field>
             </group>
         </section>

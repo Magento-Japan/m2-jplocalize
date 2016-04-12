@@ -1,5 +1,5 @@
 <?php
-namespace Magejapan\Localize\Model\ResourceModel\Directory\Region;
+namespace Veriteworks\Localize\Model\ResourceModel\Directory\Region;
 
 
 class Collection extends \Magento\Directory\Model\ResourceModel\Region\Collection

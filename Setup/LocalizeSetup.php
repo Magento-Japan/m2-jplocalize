@@ -5,7 +5,7 @@
  * Copyright © 2015 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
-namespace Magejapan\Localize\Setup;
+namespace Veriteworks\Localize\Setup;
 
 use Magento\Customer\Setup;
 use Magento\Eav\Model\Config;

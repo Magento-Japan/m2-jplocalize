@@ -1,5 +1,5 @@
 <?php
-namespace Magejapan\Localize\Block\Customer\Form;
+namespace Veriteworks\Localize\Block\Customer\Form;
 
 class Jpregister extends \Magento\Customer\Block\Form\Register
 {

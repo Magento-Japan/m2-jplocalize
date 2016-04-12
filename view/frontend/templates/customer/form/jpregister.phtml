@@ -22,7 +22,7 @@
         <legend class="legend"><span><?php echo __('Personal Information') ?></span></legend><br>
         <input type="hidden" name="success_url" value="<?php echo $block->getSuccessUrl() ?>">
         <input type="hidden" name="error_url" value="<?php echo $block->getErrorUrl() ?>">
-        <?php echo $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Name')->setTemplate('Magejapan_Localize::customer/widget/jpname.phtml')->setObject($block->getFormData())->setForceUseCustomerAttributes(true)->toHtml() ?>
+        <?php echo $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Name')->setTemplate('Veriteworks_Localize::customer/widget/jpname.phtml')->setObject($block->getFormData())->setForceUseCustomerAttributes(true)->toHtml() ?>
         <div class="field required">
             <label for="email_address" class="label"><span><?php echo __('Email') ?></span></label>
             <div class="control">
@@ -71,16 +71,18 @@
                 </div>
             </div>
 
-            <?php if($this->getConfig('localize/address/hide_country')):?>
-                    <input type="hidden" name="country_id" value="<?php echo $this->getConfig('general/country/default');?>" id="country" data-validate="{'validate-select':true}" area-required="true" />
-            <?php else:?>
+
             <div class="field country required">
+                <?php if($this->getConfig('localize/address/hide_country')):?>
+                    <input type="hidden" name="country_id" value="<?php echo $this->getConfig('general/country/default');?>" id="country" area-required="true" />
+                <?php else:?>
                 <label for="country" class="label"><span><?php echo __('Country') ?></span></label>
                 <div class="control">
                     <?php echo $block->getCountryHtmlSelect() ?>
                 </div>
+                <?php endif;?>
             </div>
-            <?php endif;?>
+
 
             <div class="field region required">
                 <label for="region_id" class="label"><span><?php echo __('State/Province') ?></span></label>
@@ -200,7 +202,11 @@ require([
 <script type="text/x-magento-init">
     {
         "#country": {
+        <?php if($this->getConfig('localize/address/hide_country')):?>
+            "exRegionUpdater": {
+        <?php else: ?>
             "regionUpdater": {
+        <?php endif;?>
                 "optionalRegionAllowed": <?php echo($block->getConfig('general/region/display_all') ? 'true' : 'false'); ?>,
                 "regionListId": "#region_id",
                 "regionInputId": "#region",

@@ -1,5 +1,5 @@
 {
-    "name":"magento-japan/m2-jplocalize",
+    "name":"veriteworks/m2-jplocalize",
     "type":"magento2-module",
     "license": [
         "OSL-3.0",
@@ -28,7 +28,7 @@
             "registration.php"
         ],
         "psr-4": {
-            "Magejapan\\Localize\\": ""
+            "Veriteworks\\Localize\\": ""
         }
     }
 }

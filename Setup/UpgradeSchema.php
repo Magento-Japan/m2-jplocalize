@@ -1,9 +1,9 @@
 <?php
 /**
- * Copyright © 2015 Magejapan Inc. All rights reserved.
+ * Copyright © 2015 Veriteworks Inc. All rights reserved.
  */
 
-namespace Magejapan\Localize\Setup;
+namespace Veriteworks\Localize\Setup;
 
 use Magento\Framework\DB\Ddl\Table;
 use Magento\Framework\Setup\UpgradeSchemaInterface;

@@ -1,5 +1,5 @@
 <?php
-namespace Magejapan\Localize\Model\Locale\Plugin;
+namespace Veriteworks\Localize\Model\Locale\Plugin;
 
 use Magento\Framework\Locale\Format;
 

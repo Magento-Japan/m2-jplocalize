@@ -28,7 +28,7 @@ Any contributions are highly appreciated. Please send me a pull request.
 
 # Copyright
 
-(c) 2015 Magento Japan User Group.
+(c) 2016 Veriteworks Inc.
 
 ***
 
@@ -60,4 +60,4 @@ Any contributions are highly appreciated. Please send me a pull request.
 
 # Copyright
 
-(c) 2015 Magento Japan User Group.
+(c) 2015 Veriteworks Inc.

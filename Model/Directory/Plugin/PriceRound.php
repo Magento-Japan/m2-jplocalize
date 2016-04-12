@@ -1,5 +1,5 @@
 <?php
-namespace Magejapan\Localize\Model\Directory\Plugin;
+namespace Veriteworks\Localize\Model\Directory\Plugin;
 
 use Magento\Directory\Model\PriceCurrency;
 

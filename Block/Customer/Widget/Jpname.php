@@ -1,5 +1,5 @@
 <?php
-namespace Magejapan\Localize\Block\Customer\Widget;
+namespace Veriteworks\Localize\Block\Customer\Widget;
 
 use Magento\Customer\Api\AddressMetadataInterface;
 use Magento\Customer\Api\CustomerMetadataInterface;

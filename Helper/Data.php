@@ -1,5 +1,5 @@
 <?php
-namespace Magejapan\Localize\Helper;
+namespace Veriteworks\Localize\Helper;
 
 class Data extends \Magento\Framework\App\Helper\AbstractHelper
 {
