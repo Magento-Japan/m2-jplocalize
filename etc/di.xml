@@ -12,6 +12,9 @@
     <type name="Magento\Framework\Locale\Format">
         <plugin name="modify_price_format" type="Veriteworks\Localize\Model\Locale\Plugin\ModifyPriceFormat" />
     </type>
+    <type name="Magento\Customer\Model\ResourceModel\Customer\Collection">
+        <plugin name="modify_name_for_collection" type="Veriteworks\Localize\Model\ResourceModel\Customer\Plugin\ModifyNameForCollection" />
+    </type>
 
     <type name="Magento\Eav\Model\Entity\Setup\PropertyMapper\Composite">
         <arguments>
@@ -20,4 +23,86 @@
             </argument>
         </arguments>
     </type>
+
+    <preference for="CustomerNameHandler" type="jpCustomerNameHandler" />
+    <preference for="CustomerNameAggregator" type="jpCustomerNameAggregator" />
+    <preference for="ShippingNameAggregator" type="jpShippingNameAggregator" />
+    <preference for="BillingNameAggregator" type="jpBillingNameAggregator" />
+
+    <virtualType name="jpCustomerNameHandler" type="Magento\Framework\Indexer\Handler\ConcatHandler">
+        <arguments>
+            <argument name="concatExpression" xsi:type="object">jpCustomerNameExpression</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="jpCustomerNameExpression" type="Magento\Framework\DB\Sql\ConcatExpression">
+        <arguments>
+            <argument name="tableName" xsi:type="string">e</argument>
+            <argument name="columns" xsi:type="array">
+                <item name="prefix" xsi:type="array">
+                    <item name="tableAlias" xsi:type="string">e</item>
+                    <item name="columnName" xsi:type="string">prefix</item>
+                </item>
+                <item name="lastname" xsi:type="array">
+                    <item name="tableAlias" xsi:type="string">e</item>
+                    <item name="columnName" xsi:type="string">lastname</item>
+                </item>
+                <item name="middlename" xsi:type="array">
+                    <item name="tableAlias" xsi:type="string">e</item>
+                    <item name="columnName" xsi:type="string">middlename</item>
+                </item>
+                <item name="firstname" xsi:type="array">
+                    <item name="tableAlias" xsi:type="string">e</item>
+                    <item name="columnName" xsi:type="string">firstname</item>
+                </item>
+                <item name="suffix" xsi:type="array">
+                    <item name="tableAlias" xsi:type="string">e</item>
+                    <item name="columnName" xsi:type="string">suffix</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="jpCustomerNameAggregator" type="Magento\Framework\DB\Sql\ConcatExpression">
+        <arguments>
+            <argument name="columns" xsi:type="array">
+                <item name="customer_lastname" xsi:type="array">
+                    <item name="tableAlias" xsi:type="string">sales_order</item>
+                    <item name="columnName" xsi:type="string">customer_lastname</item>
+                </item>
+                <item name="customer_firstname" xsi:type="array">
+                    <item name="tableAlias" xsi:type="string">sales_order</item>
+                    <item name="columnName" xsi:type="string">customer_firstname</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="jpShippingNameAggregator" type="Magento\Framework\DB\Sql\ConcatExpression">
+        <arguments>
+            <argument name="columns" xsi:type="array">
+                <item name="lastname" xsi:type="array">
+                    <item name="tableAlias" xsi:type="string">sales_shipping_address</item>
+                    <item name="columnName" xsi:type="string">lastname</item>
+                </item>
+                <item name="firstname" xsi:type="array">
+                    <item name="tableAlias" xsi:type="string">sales_shipping_address</item>
+                    <item name="columnName" xsi:type="string">firstname</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="jpBillingNameAggregator" type="Magento\Framework\DB\Sql\ConcatExpression">
+        <arguments>
+            <argument name="columns" xsi:type="array">
+                <item name="lastname" xsi:type="array">
+                    <item name="tableAlias" xsi:type="string">sales_billing_address</item>
+                    <item name="columnName" xsi:type="string">lastname</item>
+                </item>
+                <item name="firstname" xsi:type="array">
+                    <item name="tableAlias" xsi:type="string">sales_billing_address</item>
+                    <item name="columnName" xsi:type="string">firstname</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
 </config>
