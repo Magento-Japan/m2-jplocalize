@@ -1,18 +1,18 @@
 {
-    "name":"veriteworks/m2-jplocalize",
-    "type":"magento2-module",
+    "name": "veriteworks/m2-jplocalize",
+    "type": "magento2-module",
     "license": [
         "OSL-3.0",
         "AFL-3.0"
     ],
-    "description":"Magento2 extension for Japanese localization.",
-    "version":"1.0.0-beta",
+    "description": "Magento2 extension for Japanese localization.",
+    "version": "1.0.1",
     "authors":[
         {
-            "name":"Hirokazu Nishi",
-            "email":"nishi@principle-works.jp",
-            "homepage":"https://principle-works.jp/",
-            "role":"developer"
+            "name": "Hirokazu Nishi",
+            "email": "nishi@veriteworks.co.jp",
+            "homepage": "http://veriteworks.co.jp/",
+            "role": "developer"
         }
     ],
     "require": {

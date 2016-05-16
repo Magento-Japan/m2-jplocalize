@@ -43,57 +43,58 @@ class UpgradeData implements UpgradeDataInterface
      */
     public function upgrade(ModuleDataSetupInterface $setup, ModuleContextInterface $context)
     {
-        /** @var CustomerSetup $customerSetup */
-        $customerSetup = $this->localizeSetupFactory->create(['setup' => $setup]);
+        if (version_compare('1.0.1', $context->getVersion()) < 0) {
+            /** @var CustomerSetup $customerSetup */
+            $customerSetup = $this->localizeSetupFactory->create(['setup' => $setup]);
 
-        $setup->startSetup();
+            $setup->startSetup();
 
-        $attributes = [
-            'firstnamekana' =>
-            [
-                'type' => 'varchar',
-                'input' => 'text',
-                'visible' => true,
-                'required' => false,
-                'system' => 0,
-                'sort_order' => 45,
-                'validate_rules' => 'a:2:{s:15:"max_text_length";i:255;s:15:"min_text_length";i:1;}',
-                'position' => 45,
-                'label' => 'First name kana',
-            ],
-            'lastnamekana' =>
-            [
-                'type' => 'varchar',
-                'input' => 'text',
-                'visible' => true,
-                'required' => false,
-                'system' => 0,
-                'sort_order' => 65,
-                'validate_rules' => 'a:2:{s:15:"max_text_length";i:255;s:15:"min_text_length";i:1;}',
-                'position' => 65,
-                'label' => 'Last name kana',
-            ]
-        ];
+            $attributes = [
+                'firstnamekana' =>
+                    [
+                        'type' => 'varchar',
+                        'input' => 'text',
+                        'visible' => true,
+                        'required' => false,
+                        'system' => 0,
+                        'sort_order' => 45,
+                        'validate_rules' => 'a:2:{s:15:"max_text_length";i:255;s:15:"min_text_length";i:1;}',
+                        'position' => 45,
+                        'label' => 'First name kana',
+                    ],
+                'lastnamekana' =>
+                    [
+                        'type' => 'varchar',
+                        'input' => 'text',
+                        'visible' => true,
+                        'required' => false,
+                        'system' => 0,
+                        'sort_order' => 65,
+                        'validate_rules' => 'a:2:{s:15:"max_text_length";i:255;s:15:"min_text_length";i:1;}',
+                        'position' => 65,
+                        'label' => 'Last name kana',
+                    ]
+            ];
 
-        foreach ($attributes as $code => $options) {
-            $customerSetup->addAttribute(
-                Customer::ENTITY,
-                $code,
-                $options
-            );
+            foreach ($attributes as $code => $options) {
+                $customerSetup->addAttribute(
+                    Customer::ENTITY,
+                    $code,
+                    $options
+                );
 
-            $customerSetup->addAttribute(
-                'customer_address',
-                $code,
-                $options
-            );
+                $customerSetup->addAttribute(
+                    'customer_address',
+                    $code,
+                    $options
+                );
+            }
+
+            $this->installCustomerForms($customerSetup, $attributes);
+
+
+            $setup->endSetup();
         }
-
-        $this->installCustomerForms($customerSetup, $attributes);
-
-
-
-        $setup->endSetup();
 
     }
 

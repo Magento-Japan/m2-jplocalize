@@ -73,19 +73,6 @@ $suffix = $block->showSuffix();
                        class="input-text <?php echo $block->getAttributeValidationClass('lastname') ?>" <?php echo $block->getFieldParams() ?> <?php if ($block->getAttributeValidationClass('lastname') == 'required-entry') echo ' data-validate="{required:true}"' ?>>
             </div>
         </div>
-        <div class="field name lastnamekana required">
-            <label class="label"  for="<?php echo $block->getFieldId('lastnamekana') ?>">
-                <span><?php echo $block->getStoreLabel('lastnamekana') ?></span>
-            </label>
-
-            <div class="control">
-                <input type="text" id="<?php echo $block->getFieldId('lastnamekana') ?>"
-                       name="<?php echo $block->getFieldName('lastnamekana') ?>"
-                       value="<?php echo $block->escapeHtml($block->getObject()->getLastnamekana()) ?>"
-                       title="<?php echo $block->getStoreLabel('lastnamekana') ?>"
-                       class="input-text <?php echo $block->getAttributeValidationClass('lastnamekana') ?>" <?php echo $block->getFieldParams() ?> <?php if ($block->getAttributeValidationClass('lastnamekana') == 'required-entry') echo ' data-validate="{required:true}"' ?>>
-            </div>
-        </div>
     <?php if ($middle): ?>
         <?php $isMiddlenameRequired = $block->isMiddlenameRequired(); ?>
         <div class="field name middlename<?php echo $isMiddlenameRequired ? ' required' : '' ?>">
@@ -113,19 +100,6 @@ $suffix = $block->showSuffix();
                        value="<?php echo $block->escapeHtml($block->getObject()->getFirstname()) ?>"
                        title="<?php echo $block->getStoreLabel('firstname') ?>"
                        class="input-text <?php echo $block->getAttributeValidationClass('firstname') ?>" <?php echo $block->getFieldParams() ?> <?php if ($block->getAttributeValidationClass('firstname') == 'required-entry') echo ' data-validate="{required:true}"' ?>>
-            </div>
-        </div>
-        <div class="field name firstnamekana required">
-            <label class="label" for="<?php echo $block->getFieldId('firstnamekana') ?>">
-                <span><?php echo $block->getStoreLabel('firstnamekana') ?></span>
-            </label>
-
-            <div class="control">
-                <input type="text" id="<?php echo $block->getFieldId('firstnamekana') ?>"
-                       name="<?php echo $block->getFieldName('firstnamekana') ?>"
-                       value="<?php echo $block->escapeHtml($block->getObject()->getFirstnamekana()) ?>"
-                       title="<?php echo $block->getStoreLabel('firstnamekana') ?>"
-                       class="input-text <?php echo $block->getAttributeValidationClass('firstnamekana') ?>" <?php echo $block->getFieldParams() ?> <?php if ($block->getAttributeValidationClass('firstnamekana') == 'required-entry') echo ' data-validate="{required:true}"' ?>>
             </div>
         </div>
     <?php if ($suffix): ?>
@@ -156,8 +130,35 @@ $suffix = $block->showSuffix();
             </div>
         </div>
     <?php endif; ?>
+            <div class="field name lastnamekana required">
+                <label class="label"  for="<?php echo $block->getFieldId('lastnamekana') ?>">
+                    <span><?php echo $block->getStoreLabel('lastnamekana') ?></span>
+                </label>
+
+                <div class="control">
+                    <input type="text" id="<?php echo $block->getFieldId('lastnamekana') ?>"
+                           name="<?php echo $block->getFieldName('lastnamekana') ?>"
+                           value="<?php echo $block->escapeHtml($block->getObject()->getLastnamekana()) ?>"
+                           title="<?php echo $block->getStoreLabel('lastnamekana') ?>"
+                           class="input-text <?php echo $block->getAttributeValidationClass('lastnamekana') ?>" <?php echo $block->getFieldParams() ?> <?php if ($block->getAttributeValidationClass('lastnamekana') == 'required-entry') echo ' data-validate="{required:true}"' ?>>
+                </div>
+            </div>
+            <div class="field name firstnamekana required">
+                <label class="label" for="<?php echo $block->getFieldId('firstnamekana') ?>">
+                    <span><?php echo $block->getStoreLabel('firstnamekana') ?></span>
+                </label>
+
+                <div class="control">
+                    <input type="text" id="<?php echo $block->getFieldId('firstnamekana') ?>"
+                           name="<?php echo $block->getFieldName('firstnamekana') ?>"
+                           value="<?php echo $block->escapeHtml($block->getObject()->getFirstnamekana()) ?>"
+                           title="<?php echo $block->getStoreLabel('firstnamekana') ?>"
+                           class="input-text <?php echo $block->getAttributeValidationClass('firstnamekana') ?>" <?php echo $block->getFieldParams() ?> <?php if ($block->getAttributeValidationClass('firstnamekana') == 'required-entry') echo ' data-validate="{required:true}"' ?>>
+                </div>
+            </div>
     <?php if ($prefix || $middle || $suffix && !$block->getNoWrap()): ?>
         </div>
+
     </div>
 </div>
 <?php endif; ?>

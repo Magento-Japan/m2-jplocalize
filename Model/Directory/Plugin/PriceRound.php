@@ -2,7 +2,12 @@
 namespace Veriteworks\Localize\Model\Directory\Plugin;
 
 use Magento\Directory\Model\PriceCurrency;
+use Veriteworks\Localize\Helper\Data;
 
+/**
+ * Class PriceRound
+ * @package Veriteworks\Localize\Model\Directory\Plugin
+ */
 class PriceRound
 {
 
@@ -12,13 +17,21 @@ class PriceRound
     protected $_scopeConfig;
 
     /**
+     * @var \Veriteworks\Localize\Helper\Data
+     */
+    protected $_helper;
+
+    /**
      * ModifyPrice constructor.
      * @param \Magento\Framework\View\Element\Context $context
+     * @param \Veriteworks\Localize\Helper\Data $helper
      */
     public function __construct(
+        Data $helper,
         \Magento\Framework\View\Element\Context $context
     ) {
         $this->_scopeConfig = $context->getScopeConfig();
+        $this->_helper = $helper;
     }
 
 
@@ -40,11 +53,7 @@ class PriceRound
     {
         if($subject->getCurrency()->getCode() == 'JPY') {
             /** @var string $method */
-            $method = $this->_scopeConfig->getValue('tax/calculation/round');
-
-//            \Magento\Framework\App\ObjectManager::getInstance()
-//                ->get('Psr\Log\LoggerInterface')
-//                ->debug($method($amount));
+            $method = $this->_helper->getRoundMethod($scope);
 
             if($method != 'round') {
                 return $method($amount);
@@ -53,22 +62,22 @@ class PriceRound
         return $proceed($amount, $scope, $currency, $precision);
     }
 
+
     /**
      * @param \Magento\Directory\Model\PriceCurrency $subject
      * @param \Closure $proceed
      * @param $amount
      * @param int $precision
-     * @return float
+     * @return mixed
      */
     public function aroundRound(PriceCurrency  $subject,
         \Closure $proceed,
         $amount,
         $precision=2)
     {
-        //todo: detect currency.
         if($subject->getCurrency()->getCode() == 'JPY') {
             /** @var string $method */
-            $method = $this->_scopeConfig->getValue('tax/calculation/round');
+            $method = $this->_helper->getRoundMethod();
             if($method != 'round') {
                 return $method($amount);
             }

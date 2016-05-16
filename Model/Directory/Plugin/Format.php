@@ -42,6 +42,8 @@ class Format
     {
         if($subject->getCurrency()->getCode() == 'JPY') {
             $precision = '0';
+            return $subject->getCurrency($scope, $currency)
+                ->formatPrecision($amount, $precision, [], $includeContainer);
         }
         return $proceed($amount, $includeContainer, $precision, $scope, $currency);
     }

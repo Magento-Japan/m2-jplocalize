@@ -11,7 +11,8 @@ class Collection extends \Magento\Directory\Model\ResourceModel\Region\Collectio
      */
     protected function _construct()
     {
-        $this->_init('Magento\Directory\Model\Region', 'Magento\Directory\Model\ResourceModel\Region');
+        $this->_init('Magento\Directory\Model\Region',
+                     'Magento\Directory\Model\ResourceModel\Region');
 
         $this->_countryTable = $this->getTable('directory_country');
         $this->_regionNameTable = $this->getTable('directory_country_region_name');
@@ -43,7 +44,11 @@ class Collection extends \Magento\Directory\Model\ResourceModel\Region\Collectio
             );
         }
         if (count($options) > 0) {
-            array_unshift($options, ['title ' => null, 'value' => null, 'label' => __('--Please select--')]);
+            array_unshift($options,
+                ['title ' => null,
+                 'value' => null,
+                 'label' => __('--Please select--')
+                ]);
         }
         return $options;
     }
