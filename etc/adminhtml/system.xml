@@ -23,13 +23,13 @@
                         <field id="use_kana">1</field>
                     </depends>
                 </field>
-                <field id="use_hiragana" translate="label" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Allow Kana type</label>
-                    <source_model>Veriteworks\Localize\Model\Config\Source\Kana</source_model>
-                    <depends>
-                        <field id="use_kana">1</field>
-                    </depends>
-                </field>
+                <!--<field id="use_hiragana" translate="label" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">-->
+                    <!--<label>Allow Kana type</label>-->
+                    <!--<source_model>Veriteworks\Localize\Model\Config\Source\Kana</source_model>-->
+                    <!--<depends>-->
+                        <!--<field id="use_kana">1</field>-->
+                    <!--</depends>-->
+                <!--</field>-->
             </group>
             <group id="address" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Address format option</label>
@@ -47,7 +47,7 @@
                 </field>
             </group>
             <group id="sort" translate="label" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Checkout address field order</label>
+                <label>Checkout address fields sort order</label>
                 <field id="lastname" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Last Name</label>
                 </field>
