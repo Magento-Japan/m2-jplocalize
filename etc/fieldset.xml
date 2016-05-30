@@ -19,5 +19,23 @@
                 <aspect name="name" />
             </field>
         </fieldset>
+        <fieldset id="customer_address">
+            <field name="firstnamekana">
+                <aspect name="to_quote_address" />
+            </field>
+            <field name="lastnamekana">
+                <aspect name="to_quote_address" />
+            </field>
+        </fieldset>
+        <fieldset id="order_address">
+            <field name="firstnamekana">
+                <aspect name="to_customer" />
+                <aspect name="to_customer_address" />
+            </field>
+            <field name="lastnamekana">
+                <aspect name="to_customer" />
+                <aspect name="to_customer_address" />
+            </field>
+        </fieldset>
     </scope>
 </config>
