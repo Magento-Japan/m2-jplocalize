@@ -1,7 +1,7 @@
 Japanese Localize Extension
 ================
-This extension is Japanese localize extension for Magento2.  
-Following functions will be added to Magento.
+This extension is Japanese localize extension for Magento2.
+Following features will be added to Magento.
 
 **NOTICE: this extension requires mbstring PHP extension. Please install it before install this extension.**
 
@@ -39,11 +39,14 @@ Any contributions are highly appreciated. Please send me a pull request.
 
 # 機能紹介
 
-
+ - フリガナの追加
+ - 日本円から小数点を除去
+ - 端数処理方法の追加
+ - 日本方式の住所フォームの表示順への調整
 
 # インストール方法
 
-
+modmanまたはcomposerでインストールできます。modmanのほうが楽かもしれません。
 
 # サポートについて
 
@@ -60,4 +63,4 @@ Any contributions are highly appreciated. Please send me a pull request.
 
 # Copyright
 
-(c) 2015 Veriteworks Inc.
+(c) 2016 Veriteworks Inc.

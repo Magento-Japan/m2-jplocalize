@@ -35,6 +35,13 @@ class ModifyPriceFormat
         $this->currencyFactory = $currencyFactory;
     }
 
+    /**
+     * @param \Magento\Framework\Locale\Format $subject
+     * @param \Closure $proceed
+     * @param null $localeCode
+     * @param null $currencyCode
+     * @return mixed
+     */
     public function aroundGetPriceFormat(Format $subject,
                                         \Closure $proceed,
                                         $localeCode = null,

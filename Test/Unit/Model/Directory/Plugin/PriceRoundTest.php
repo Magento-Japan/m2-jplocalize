@@ -23,7 +23,8 @@ class PriceRoundTest extends \PHPUnit_Framework_TestCase
                 ->getMock();
 
         $this->_priceRoundPlugin =
-            $objectManager->getObject('Veriteworks\Localize\Model\Directory\Plugin\PriceRound', ['helper' => $this->_helper]);
+            $objectManager->getObject('Veriteworks\Localize\Model\Directory\Plugin\PriceRound',
+                ['helper' => $this->_helper]);
 
         $this->_priceCurrency =
             $this->getMockBuilder('Magento\Directory\Model\PriceCurrency')

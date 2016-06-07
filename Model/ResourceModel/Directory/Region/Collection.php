@@ -2,6 +2,10 @@
 namespace Veriteworks\Localize\Model\ResourceModel\Directory\Region;
 
 
+/**
+ * Class Collection
+ * @package Veriteworks\Localize\Model\ResourceModel\Directory\Region
+ */
 class Collection extends \Magento\Directory\Model\ResourceModel\Region\Collection
 {
     /**
