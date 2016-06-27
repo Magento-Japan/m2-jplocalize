@@ -135,7 +135,7 @@ class UpgradeData implements UpgradeDataInterface
             $attribute['system'] = isset($attribute['system']) ? $attribute['system'] : true;
             $attribute['visible'] = isset($attribute['visible']) ? $attribute['visible'] : true;
             if ($attribute['system'] != true || $attribute['visible'] != false) {
-                $usedInForms = ['customer_account_create', 'customer_account_edit', 'checkout_register', 'customer_register_address','customer_address_edit'];
+                $usedInForms = ['customer_account_create', 'customer_account_edit', 'customer_register_address','customer_address_edit'];
                 if (!empty($attribute['adminhtml_only'])) {
                     $usedInForms = ['adminhtml_customer'];
                 } else {
