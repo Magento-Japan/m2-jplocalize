@@ -1,10 +1,27 @@
 <?php
 namespace Veriteworks\Localize\Model\Customer\Data;
 
+use \Magento\Framework\Api\AttributeValueFactory;
+
 class Address extends \Magento\Customer\Model\Data\Address
 {
     const FIRSTNAMEKANA = 'firstnamekana';
     const LASTNAMEKANA = 'lastnamekana';
+
+    /**
+     * @param \Magento\Framework\Api\ExtensionAttributesFactory $extensionFactory
+     * @param AttributeValueFactory $attributeValueFactory
+     * @param \Magento\Customer\Api\AddressMetadataInterface $metadataService
+     * @param array $data
+     */
+    public function __construct(
+        \Magento\Framework\Api\ExtensionAttributesFactory $extensionFactory,
+        AttributeValueFactory $attributeValueFactory,
+        \Magento\Customer\Api\AddressMetadataInterface $metadataService,
+        $data = []
+    ) {
+        parent::__construct($extensionFactory, $attributeValueFactory, $metadataService, $data);
+    }
 
     /**
      * Set first name kana

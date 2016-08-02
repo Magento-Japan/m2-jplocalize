@@ -91,8 +91,6 @@ class UpgradeData implements UpgradeDataInterface
             }
 
             $this->installCustomerForms($customerSetup, $attributes);
-
-
             $setup->endSetup();
         }
 

@@ -1,6 +1,8 @@
 <?php
 namespace Veriteworks\Localize\Model\Customer\Data;
 
+use \Magento\Framework\Api\AttributeValueFactory;
+
 class Customer extends \Magento\Customer\Model\Data\Customer
 {
     const FIRSTNAMEKANA = 'firstnamekana';

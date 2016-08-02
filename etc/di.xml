@@ -27,6 +27,10 @@
         <plugin name="assign_kana" type="Veriteworks\Localize\Plugin\Customer\Model\Address" sortOrder="100"/>
     </type>
 
+    <type name="Magento\Quote\Model\Quote\Address\ToOrderAddress">
+        <plugin name="assign_kana" type="Veriteworks\Localize\Plugin\Quote\Model\Quote\Address\ToOrderAddress" sortOrder="100"/>
+    </type>
+
     <type name="Magento\Eav\Model\Entity\Setup\PropertyMapper\Composite">
         <arguments>
             <argument name="propertyMappers" xsi:type="array">

@@ -23,6 +23,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
      */
     public function upgrade(SchemaSetupInterface $setup, ModuleContextInterface $context)
     {
+        echo $context->getVersion();
         if (version_compare('1.0.1', $context->getVersion()) < 0) {
 
             $installer = $setup;
@@ -32,7 +33,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
              */
 
             $tables = ['sales_order',
-                'sales_order_address'
+                'quote',
             ];
             /** @var \Magento\Framework\DB\Adapter\AdapterInterface $connection */
             $connection = $installer->getConnection();
@@ -60,7 +61,34 @@ class UpgradeSchema implements UpgradeSchemaInterface
                 }
             }
 
-        }
+            $tables = [
+                'sales_order_address',
+                'quote_address'
+            ];
+            foreach ($tables as $table) {
+                $columns = $connection->describeTable($installer->getTable($table));
+                if (!isset($columns['lastnamekana'])) {
+                    $setup->getConnection()
+                        ->addColumn(
+                            $table,
+                            'lastnamekana',
+                            [
+                                'type' => Table::TYPE_TEXT,
+                                'length' => 255,
+                                'comment' => 'Customer Lastname Kana']);
+                }
+                if (!isset($columns['firstnamekana'])) {
+                    $setup->getConnection()
+                        ->addColumn(
+                            $table,
+                            'firstnamekana',
+                            [
+                                'type' => Table::TYPE_TEXT,
+                                'length' => 255,
+                                'comment' => 'Customer Firstname Kana']);
+                }
+            }
 
+        }
     }
 }
