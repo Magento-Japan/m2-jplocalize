@@ -88,9 +88,11 @@ class LayoutProcessor
                 if(in_array($key, ['firstnamekana', 'lastnamekana']))
                 {
                     $method = 'get' . ucfirst($key);
-                    $shippingelement['value'] = $this->_getCustomer()->$method();
-                    if($requireKana) {
-                        $shippingelement['validation']['required-entry'] = true;
+                    if($this->_getCustomer()){
+                        $shippingelement['value'] = $this->_getCustomer()->$method();
+                        if($requireKana) {
+                            $shippingelement['validation']['required-entry'] = true;
+                        }
                     }
                 }
             }
@@ -122,10 +124,11 @@ class LayoutProcessor
                     if(in_array($key, ['firstnamekana', 'lastnamekana']))
                     {
                         $func = 'get' . ucfirst($key);
-
-                        $billingElement['value'] = $this->_getCustomer()->$func();
-                        if($requireKana) {
-                            $billingElement['validation']['required-entry'] = true;
+                        if($this->_getCustomer()) {
+                            $billingElement['value'] = $this->_getCustomer()->$func();
+                            if ($requireKana) {
+                                $billingElement['validation']['required-entry'] = true;
+                            }
                         }
                     }
                 }
