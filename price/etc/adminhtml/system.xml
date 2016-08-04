@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="tax">
+            <group id="calculation">
+                <field id="round" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Tax Rounding Method</label>
+                    <source_model>Veriteworks\Price\Model\Config\Source\Round</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

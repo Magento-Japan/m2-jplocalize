@@ -1,1 +1,3 @@
-./             app/code/Veriteworks/Localize/
+./kana/             app/code/Veriteworks/Kana/
+./region/             app/code/Veriteworks/Region/
+./price/             app/code/Veriteworks/Price/
