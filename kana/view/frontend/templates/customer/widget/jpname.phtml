@@ -142,10 +142,13 @@ $requireKana = $block->getConfig('require_kana');
                 <span><?php /* @escapeNotVerified */ echo $block->getStoreLabel('lastnamekana') ?></span>
             </label>
 
+            <?php $attrLnameKana = $block->getObject()->getCustomAttribute('lastnamekana');?>
+            <?php $lnameKana = (is_object($attrLnameKana)) ? $attrLnameKana->getValue() : '';?>
+
             <div class="control">
                 <input type="text" id="<?php /* @escapeNotVerified */ echo $block->getFieldId('lastnamekana') ?>"
                        name="<?php /* @escapeNotVerified */ echo $block->getFieldName('lastnamekana') ?>"
-                       value="<?php echo $block->escapeHtml($block->getObject()->getCustomAttribute('lastnamekana')->getValue()) ?>"
+                       value="<?php echo $block->escapeHtml($lnameKana) ?>"
                        title="<?php /* @escapeNotVerified */ echo $block->getStoreLabel('lastnamekana') ?>"
                        class="input-text <?php echo $block->getAttributeValidationClass('lastnamekana') ?>" <?php /* @escapeNotVerified */ echo $block->getFieldParams() ?> <?php if($requireKana)  echo ' data-validate="{required:true}"' ?>>
             </div>
@@ -155,10 +158,12 @@ $requireKana = $block->getConfig('require_kana');
                 <span><?php /* @escapeNotVerified */ echo $block->getStoreLabel('firstnamekana') ?></span>
             </label>
 
+            <?php $attrFnameKana = $block->getObject()->getCustomAttribute('firstnamekana');?>
+            <?php $fnameKana = (is_object($attrFnameKana)) ? $attrFnameKana->getValue() : '';?>
             <div class="control">
                 <input type="text" id="<?php /* @escapeNotVerified */ echo $block->getFieldId('firstnamekana') ?>"
                        name="<?php /* @escapeNotVerified */ echo $block->getFieldName('firstnamekana') ?>"
-                       value="<?php echo $block->escapeHtml($block->getObject()->getCustomAttribute('firstnamekana')->getValue()) ?>"
+                       value="<?php echo $block->escapeHtml($fnameKana) ?>"
                        title="<?php /* @escapeNotVerified */ echo $block->getStoreLabel('firstnamekana') ?>"
                        class="input-text <?php /* @escapeNotVerified */ echo $block->getAttributeValidationClass('firstnamekana') ?>" <?php /* @escapeNotVerified */ echo $block->getFieldParams() ?> <?php if($requireKana) echo ' data-validate="{required:true}"' ?>>
             </div>
