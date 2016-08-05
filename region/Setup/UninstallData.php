@@ -6,14 +6,14 @@
 namespace Veriteworks\Region\Setup;
 
 use Magento\Directory\Helper\Data;
-use Magento\Framework\Setup\UninstallDataInterface;
+use Magento\Framework\Setup\UninstallInterface;
 use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 
 /**
  * @codeCoverageIgnore
  */
-class UninstallData implements UninstallDataInterface
+class UninstallData implements UninstallInterface
 {
     /**
      * Directory data
