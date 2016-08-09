@@ -144,6 +144,11 @@ $requireKana = $block->getConfig('require_kana');
 
             <?php $attrLnameKana = $block->getObject()->getCustomAttribute('lastnamekana');?>
             <?php $lnameKana = (is_object($attrLnameKana)) ? $attrLnameKana->getValue() : '';?>
+            <?php if(is_object($attrLnameKana)) :?>
+                <?php $lnameKana = $attrLnameKana->getValue();?>
+            <?php else:?>
+                <?php $lnameKana = $block->getObject()->getLastnamekana();?>
+            <?php endif;?>
 
             <div class="control">
                 <input type="text" id="<?php /* @escapeNotVerified */ echo $block->getFieldId('lastnamekana') ?>"
@@ -159,7 +164,11 @@ $requireKana = $block->getConfig('require_kana');
             </label>
 
             <?php $attrFnameKana = $block->getObject()->getCustomAttribute('firstnamekana');?>
-            <?php $fnameKana = (is_object($attrFnameKana)) ? $attrFnameKana->getValue() : '';?>
+            <?php if(is_object($attrFnameKana)) :?>
+                <?php $fnameKana = $attrFnameKana->getValue();?>
+            <?php else:?>
+                <?php $fnameKana = $block->getObject()->getFirstnamekana();?>
+            <?php endif;?>
             <div class="control">
                 <input type="text" id="<?php /* @escapeNotVerified */ echo $block->getFieldId('firstnamekana') ?>"
                        name="<?php /* @escapeNotVerified */ echo $block->getFieldName('firstnamekana') ?>"

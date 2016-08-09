@@ -11,7 +11,13 @@ Following features will be added to Magento.
 
 # How to install
 
+## Via Packagist
+ + composer require magento-japan/m2-jplocalize
+ + bin/magento setup:upgrade
 
+## Via modman
+ + Clone this repository via modman
+ + bin/magento setup:upgrade
 
 # Support
 

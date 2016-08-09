@@ -144,8 +144,10 @@ class LayoutProcessor
     private function _getCustomer()
     {
         if (!$this->_customer) {
-            if ($this->_customerSession->isLoggedIn()) {
-                $this->_customer = $this->_customerRepository->getById($this->_customerSession->getCustomerId());
+            $_session = $this->_customerSession;
+            if ($_session->isLoggedIn()) {
+                $this->_customer = $this->_customerRepository
+                    ->getById($_session->getCustomerId());
             } else {
                 return null;
             }
