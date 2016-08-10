@@ -28,6 +28,11 @@ class ModifyName
         $this->_fieldsetConfig = $fieldsetConfig;
     }
 
+    /**
+     * @param \Magento\Customer\Model\ResourceModel\Customer\Collection $subject
+     * @param \Closure $proceed
+     * @return \Magento\Customer\Model\ResourceModel\Customer\Collection
+     */
     public function aroundAddNameToSelect(Collection $subject,
                                           \Closure $proceed
     )
