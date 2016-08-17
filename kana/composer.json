@@ -6,7 +6,7 @@
         "AFL-3.0"
     ],
     "description": "Magento2 extension for Japanese Kana.",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "authors":[
         {
             "name": "Hirokazu Nishi",
@@ -22,7 +22,7 @@
         "magento/module-media-storage": "~100.0",
         "magento/framework": "~100.0",
         "lib-libxml": "*",
-        "veriteworks/m2-region": "*"
+        "veriteworks/m2-region": "~1.0"
     },
     "autoload": {
         "files": [
