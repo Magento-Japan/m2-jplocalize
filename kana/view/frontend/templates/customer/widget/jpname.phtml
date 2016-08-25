@@ -158,7 +158,7 @@ $requireKana = $block->getConfig('require_kana');
                        class="input-text <?php echo $block->getAttributeValidationClass('lastnamekana') ?>" <?php /* @escapeNotVerified */ echo $block->getFieldParams() ?> <?php if($requireKana)  echo ' data-validate="{required:true}"' ?>>
             </div>
         </div>
-        <div class="field name firstname required">
+        <div class="field name firstname <?php if($requireKana):?>required<?php endif;?>">
             <label class="label" for="<?php /* @escapeNotVerified */ echo $block->getFieldId('firstnamekana') ?>">
                 <span><?php /* @escapeNotVerified */ echo $block->getStoreLabel('firstnamekana') ?></span>
             </label>
