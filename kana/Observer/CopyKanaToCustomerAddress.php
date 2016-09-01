@@ -10,11 +10,11 @@ class CopyKanaToCustomerAddress implements ObserverInterface
     /**
      * @var AttributeValueFactory
      */
-    protected $_attributeValueFactory;
+    private $attributeValueFactory;
 
     public function __construct(AttributeValueFactory $attributeValueFactory)
     {
-        $this->_attributeValueFactory = $attributeValueFactory;
+        $this->attributeValueFactory = $attributeValueFactory;
     }
 
     /**
@@ -28,11 +28,11 @@ class CopyKanaToCustomerAddress implements ObserverInterface
         $order = $observer->getEvent()->getSource();
         $target = $observer->getEvent()->getTarget();
 
-        $fKana = $this->_attributeValueFactory->create();
+        $fKana = $this->attributeValueFactory->create();
         $fKana->setAttributeCode('firstnamekana')
             ->setValue($order->getFirstnamekana());
 
-        $lKana = $this->_attributeValueFactory->create();
+        $lKana = $this->attributeValueFactory->create();
         $lKana->setAttributeCode('lastnamekana')
             ->setValue($order->getLastnamekana());
 

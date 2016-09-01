@@ -5,40 +5,40 @@ use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
 
 class PriceRoundTest extends \PHPUnit_Framework_TestCase
 {
-    protected $_priceRoundPlugin;
+    protected $priceRoundPlugin;
 
-    protected $_priceCurrency;
+    protected $priceCurrency;
 
-    protected $_helper;
+    protected $helper;
 
-    protected $_closure;
+    protected $closure;
 
     protected function setUp()
     {
         $objectManager = new ObjectManager($this);
 
-        $this->_helper =
+        $this->helper =
             $this->getMockBuilder('Veriteworks\Price\Helper\Data')
                 ->disableOriginalConstructor()
                 ->getMock();
 
-        $this->_priceRoundPlugin =
+        $this->priceRoundPlugin =
             $objectManager->getObject('Veriteworks\Price\Model\Directory\Plugin\PriceRound',
-                ['helper' => $this->_helper]);
+                ['helper' => $this->helper]);
 
-        $this->_priceCurrency =
+        $this->priceCurrency =
             $this->getMockBuilder('Magento\Directory\Model\PriceCurrency')
                 ->disableOriginalConstructor()
                 ->getMock();
 
-        $this->_closure = function () {
+        $this->closure = function () {
             return 100;
         };
     }
 
     public function testAroundConvertRoundRound()
     {
-        $this->_helper->expects($this->atLeastOnce())
+        $this->helper->expects($this->atLeastOnce())
             ->method('getRoundMethod')
             ->willReturn('round');
         $currency = $this->getMockBuilder('Magento\Directory\Model\Currency')
@@ -47,13 +47,13 @@ class PriceRoundTest extends \PHPUnit_Framework_TestCase
         $currency->expects($this->atLeastOnce())
             ->method('getCode')->willReturn('JPY');
 
-        $this->_priceCurrency->expects($this->atLeastOnce())
+        $this->priceCurrency->expects($this->atLeastOnce())
             ->method('getCurrency')->willReturn($currency);
 
         $this->assertEquals(100,
-            $this->_priceRoundPlugin
-                 ->aroundConvertAndRound($this->_priceCurrency,
-                                         $this->_closure,
+            $this->priceRoundPlugin
+                 ->aroundConvertAndRound($this->priceCurrency,
+                                         $this->closure,
                                          100.49,
                                          [],
                                          null,
@@ -63,7 +63,7 @@ class PriceRoundTest extends \PHPUnit_Framework_TestCase
 
     public function testAroundConvertRoundCeil()
     {
-        $this->_helper->expects($this->atLeastOnce())
+        $this->helper->expects($this->atLeastOnce())
             ->method('getRoundMethod')
             ->willReturn('ceil');
         $currency = $this->getMockBuilder('Magento\Directory\Model\Currency')
@@ -72,13 +72,13 @@ class PriceRoundTest extends \PHPUnit_Framework_TestCase
         $currency->expects($this->atLeastOnce())
             ->method('getCode')->willReturn('JPY');
 
-        $this->_priceCurrency->expects($this->atLeastOnce())
+        $this->priceCurrency->expects($this->atLeastOnce())
             ->method('getCurrency')->willReturn($currency);
 
         $this->assertEquals(101,
-            $this->_priceRoundPlugin
-                ->aroundConvertAndRound($this->_priceCurrency,
-                    $this->_closure,
+            $this->priceRoundPlugin
+                ->aroundConvertAndRound($this->priceCurrency,
+                    $this->closure,
                     100.49,
                     [],
                     null,
@@ -88,7 +88,7 @@ class PriceRoundTest extends \PHPUnit_Framework_TestCase
 
     public function testAroundConvertRoundFloor()
     {
-        $this->_helper->expects($this->atLeastOnce())
+        $this->helper->expects($this->atLeastOnce())
             ->method('getRoundMethod')
             ->willReturn('floor');
         $currency = $this->getMockBuilder('Magento\Directory\Model\Currency')
@@ -97,13 +97,13 @@ class PriceRoundTest extends \PHPUnit_Framework_TestCase
         $currency->expects($this->atLeastOnce())
             ->method('getCode')->willReturn('JPY');
 
-        $this->_priceCurrency->expects($this->atLeastOnce())
+        $this->priceCurrency->expects($this->atLeastOnce())
             ->method('getCurrency')->willReturn($currency);
 
         $this->assertEquals(100,
-            $this->_priceRoundPlugin
-                ->aroundConvertAndRound($this->_priceCurrency,
-                    $this->_closure,
+            $this->priceRoundPlugin
+                ->aroundConvertAndRound($this->priceCurrency,
+                    $this->closure,
                     100.49,
                     [],
                     null,
@@ -113,7 +113,7 @@ class PriceRoundTest extends \PHPUnit_Framework_TestCase
 
     public function testAroundRoundRound()
     {
-        $this->_helper->expects($this->atLeastOnce())
+        $this->helper->expects($this->atLeastOnce())
             ->method('getRoundMethod')
             ->willReturn('round');
         $currency = $this->getMockBuilder('Magento\Directory\Model\Currency')
@@ -122,13 +122,13 @@ class PriceRoundTest extends \PHPUnit_Framework_TestCase
         $currency->expects($this->atLeastOnce())
             ->method('getCode')->willReturn('JPY');
 
-        $this->_priceCurrency->expects($this->atLeastOnce())
+        $this->priceCurrency->expects($this->atLeastOnce())
             ->method('getCurrency')->willReturn($currency);
 
         $this->assertEquals(100,
-            $this->_priceRoundPlugin
-                 ->aroundRound($this->_priceCurrency,
-                                         $this->_closure,
+            $this->priceRoundPlugin
+                 ->aroundRound($this->priceCurrency,
+                                         $this->closure,
                                          100.49,
                                          'USD',
                                          2));
@@ -136,7 +136,7 @@ class PriceRoundTest extends \PHPUnit_Framework_TestCase
 
     public function testAroundRoundCeil()
     {
-        $this->_helper->expects($this->atLeastOnce())
+        $this->helper->expects($this->atLeastOnce())
             ->method('getRoundMethod')
             ->willReturn('ceil');
         $currency = $this->getMockBuilder('Magento\Directory\Model\Currency')
@@ -145,13 +145,13 @@ class PriceRoundTest extends \PHPUnit_Framework_TestCase
         $currency->expects($this->atLeastOnce())
             ->method('getCode')->willReturn('JPY');
 
-        $this->_priceCurrency->expects($this->atLeastOnce())
+        $this->priceCurrency->expects($this->atLeastOnce())
             ->method('getCurrency')->willReturn($currency);
 
         $this->assertEquals(101,
-            $this->_priceRoundPlugin
-                ->aroundRound($this->_priceCurrency,
-                    $this->_closure,
+            $this->priceRoundPlugin
+                ->aroundRound($this->priceCurrency,
+                    $this->closure,
                     100.49,
                     'USD',
                     2));
@@ -159,7 +159,7 @@ class PriceRoundTest extends \PHPUnit_Framework_TestCase
 
     public function testAroundRoundFloor()
     {
-        $this->_helper->expects($this->atLeastOnce())
+        $this->helper->expects($this->atLeastOnce())
             ->method('getRoundMethod')
             ->willReturn('floor');
         $currency = $this->getMockBuilder('Magento\Directory\Model\Currency')
@@ -168,13 +168,13 @@ class PriceRoundTest extends \PHPUnit_Framework_TestCase
         $currency->expects($this->atLeastOnce())
             ->method('getCode')->willReturn('JPY');
 
-        $this->_priceCurrency->expects($this->atLeastOnce())
+        $this->priceCurrency->expects($this->atLeastOnce())
             ->method('getCurrency')->willReturn($currency);
 
         $this->assertEquals(100,
-            $this->_priceRoundPlugin
-                ->aroundRound($this->_priceCurrency,
-                    $this->_closure,
+            $this->priceRoundPlugin
+                ->aroundRound($this->priceCurrency,
+                    $this->closure,
                     100.49,
                     'USD',
                     2));

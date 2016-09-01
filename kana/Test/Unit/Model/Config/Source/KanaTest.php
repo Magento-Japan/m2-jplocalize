@@ -12,7 +12,7 @@ class KanaTest extends \PHPUnit_Framework_TestCase
     /**
      * @var \Veriteworks\Kana\Model\Config\Source\Kana
      */
-    protected $_model;
+    protected $model;
 
     /**
      *
@@ -21,7 +21,7 @@ class KanaTest extends \PHPUnit_Framework_TestCase
     {
         $objectManager = new ObjectManager($this);
 
-        $this->_model =
+        $this->model =
             $objectManager->getObject('Veriteworks\Kana\Model\Config\Source\Kana');
     }
 
@@ -30,6 +30,6 @@ class KanaTest extends \PHPUnit_Framework_TestCase
      */
     public function testToOptionArray()
     {
-        $this->assertArrayHasKey('1', $this->_model->toOptionArray());
+        $this->assertArrayHasKey('1', $this->model->toOptionArray());
     }
 }

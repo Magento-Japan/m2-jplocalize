@@ -9,7 +9,7 @@ class Format
     /**
      * @var \Magento\Framework\App\Config\ScopeConfigInterface
      */
-    protected $_scopeConfig;
+    private $scopeConfig;
 
     /**
      * ModifyPrice constructor.
@@ -18,7 +18,7 @@ class Format
     public function __construct(
         \Magento\Framework\View\Element\Context $context
     ) {
-        $this->_scopeConfig = $context->getScopeConfig();
+        $this->scopeConfig = $context->getScopeConfig();
     }
 
     /**

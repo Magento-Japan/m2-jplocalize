@@ -14,22 +14,22 @@ class LayoutProcessor
     /**
      * @var \Magento\Framework\App\Config\ScopeConfigInterface
      */
-    protected $_scopeConfig;
+    private $scopeConfig;
 
     /**
      * @var CustomerRepository
      */
-    private $_customerRepository;
+    private $customerRepository;
 
     /**
      * @var Session
      */
-    private $_customerSession;
+    private $customerSession;
 
     /**
      * @var \Magento\Customer\Api\Data\CustomerInterface
      */
-    private $_customer;
+    private $customer;
 
     /**
      * ModifyPrice constructor.
@@ -42,9 +42,9 @@ class LayoutProcessor
         Session $customerSession,
         CustomerRepository $customerRepository
     ) {
-        $this->_scopeConfig = $context->getScopeConfig();
-        $this->_customerSession = $customerSession;
-        $this->_customerRepository = $customerRepository;
+        $this->scopeConfig = $context->getScopeConfig();
+        $this->customerSession = $customerSession;
+        $this->customerRepository = $customerRepository;
     }
 
     /**
@@ -56,14 +56,14 @@ class LayoutProcessor
         \Magento\Checkout\Block\Checkout\LayoutProcessor $subject,
         array  $jsLayout
     ) {
-        $locale = $this->_scopeConfig->
+        $locale = $this->scopeConfig->
         getValue('general/locale/code', ScopeInterface::SCOPE_STORE);
-        $format = $this->_scopeConfig->
+        $format = $this->scopeConfig->
         getValue('localize/address/change_fields_order', ScopeInterface::SCOPE_STORE);
 
-        $hideCountry = $this->_scopeConfig
+        $hideCountry = $this->scopeConfig
             ->getValue(self::CONFIG_COUNTRY_SHOW, ScopeInterface::SCOPE_STORE);
-        $requireKana  = $this->_scopeConfig
+        $requireKana  = $this->scopeConfig
             ->getValue(self::CONFIG_REQUIRE_KANA, ScopeInterface::SCOPE_STORE);
 
         if($locale == 'ja_JP' && $format) {
@@ -77,7 +77,7 @@ class LayoutProcessor
                     $key = 'region';
                 }
                 $path = self::CONFIG_ELEMENT_ORDER . $key;
-                $config = $this->_scopeConfig->getValue($path, ScopeInterface::SCOPE_STORE);
+                $config = $this->scopeConfig->getValue($path, ScopeInterface::SCOPE_STORE);
                 $shippingelement['sortOrder'] = $config;
 
                 if($key == 'country_id' && $hideCountry)
@@ -87,11 +87,14 @@ class LayoutProcessor
 
                 if(in_array($key, ['firstnamekana', 'lastnamekana']))
                 {
-                    if($this->_getCustomer()){
-                        $shippingelement['value'] = $this->_getCustomer()
-                            ->getCustomAttribute($key)->getValue();
-                        if($requireKana) {
-                            $shippingelement['validation']['required-entry'] = true;
+                    if($this->getCustomer()){
+                        $attribute = $this->getCustomer()
+                            ->getCustomAttribute($key);
+                        if(is_object($attribute)) {
+                            $shippingelement['value'] = $attribute;
+                            if($requireKana) {
+                                $shippingelement['validation']['required-entry'] = true;
+                            }
                         }
                     }
                 }
@@ -113,7 +116,7 @@ class LayoutProcessor
                         $key = 'region';
                     }
                     $path = self::CONFIG_ELEMENT_ORDER . $key;
-                    $config = $this->_scopeConfig->getValue($path, ScopeInterface::SCOPE_STORE);
+                    $config = $this->scopeConfig->getValue($path, ScopeInterface::SCOPE_STORE);
                     $billingElement['sortOrder'] = $config;
 
                     if($key == 'country_id' && $hideCountry)
@@ -123,11 +126,14 @@ class LayoutProcessor
 
                     if(in_array($key, ['firstnamekana', 'lastnamekana']))
                     {
-                        if($this->_getCustomer()) {
-                            $billingElement['value'] = $this->_getCustomer()
-                                ->getCustomAttribute($key)->getValue();
-                            if ($requireKana) {
-                                $billingElement['validation']['required-entry'] = true;
+                        if($this->getCustomer()) {
+                            $attribute = $this->getCustomer()
+                                ->getCustomAttribute($key);
+                            if(is_object($attribute)) {
+                                $billingElement['value'] = $attribute;
+                                if($requireKana) {
+                                    $billingElement['validation']['required-entry'] = true;
+                                }
                             }
                         }
                     }
@@ -143,16 +149,16 @@ class LayoutProcessor
      */
     private function _getCustomer()
     {
-        if (!$this->_customer) {
-            $_session = $this->_customerSession;
+        if (!$this->customer) {
+            $_session = $this->customerSession;
             if ($_session->isLoggedIn()) {
-                $this->_customer = $this->_customerRepository
+                $this->customer = $this->customerRepository
                     ->getById($_session->getCustomerId());
             } else {
                 return null;
             }
         }
-        return $this->_customer;
+        return $this->customer;
     }
 
 }

@@ -5,17 +5,17 @@ use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
 
 class PrecisionTest extends \PHPUnit_Framework_TestCase
 {
-    protected $_precisionPlugin;
+    protected $precisionPlugin;
 
-    protected $_closure;
+    protected $closure;
 
     protected function setUp()
     {
         $objectManager = new ObjectManager($this);
-        $this->_precisionPlugin =
+        $this->precisionPlugin =
             $objectManager->getObject('Veriteworks\Price\Model\Directory\Plugin\Precision');
 
-        $this->_closure = function () {
+        $this->closure = function () {
             return '<span class="price">￥100</span>';
         };
     }
@@ -27,9 +27,9 @@ class PrecisionTest extends \PHPUnit_Framework_TestCase
             ->method('getCode')->willReturn('JPY');
 
         $this->assertEquals('<span class="price">￥100</span>',
-            $this->_precisionPlugin
+            $this->precisionPlugin
                  ->aroundFormatPrecision($currency,
-                                         $this->_closure,
+                                         $this->closure,
                                          100.49,
                                          [],
                                          true,
@@ -45,9 +45,9 @@ class PrecisionTest extends \PHPUnit_Framework_TestCase
             ->method('getCode')->willReturn('USD');
 
         $this->assertNotEquals('<span class="price">￥100.49</span>',
-            $this->_precisionPlugin
+            $this->precisionPlugin
                  ->aroundFormatPrecision($currency,
-                                         $this->_closure,
+                                         $this->closure,
                                          100.49,
                                          [],
                                          true,

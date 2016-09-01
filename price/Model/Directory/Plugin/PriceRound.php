@@ -14,12 +14,12 @@ class PriceRound
     /**
      * @var \Magento\Framework\App\Config\ScopeConfigInterface
      */
-    protected $_scopeConfig;
+    private $scopeConfig;
 
     /**
      * @var \Veriteworks\Price\Helper\Data
      */
-    protected $_helper;
+    private $helper;
 
     /**
      * ModifyPrice constructor.
@@ -30,8 +30,8 @@ class PriceRound
         Data $helper,
         \Magento\Framework\View\Element\Context $context
     ) {
-        $this->_scopeConfig = $context->getScopeConfig();
-        $this->_helper = $helper;
+        $this->scopeConfig = $context->getScopeConfig();
+        $this->helper = $helper;
     }
 
 
@@ -53,7 +53,7 @@ class PriceRound
     {
         if($subject->getCurrency()->getCode() == 'JPY') {
             /** @var string $method */
-            $method = $this->_helper->getRoundMethod($scope);
+            $method = $this->helper->getRoundMethod($scope);
 
             if($method != 'round') {
                 return $method($amount);
@@ -77,7 +77,7 @@ class PriceRound
     {
         if($subject->getCurrency()->getCode() == 'JPY') {
             /** @var string $method */
-            $method = $this->_helper->getRoundMethod();
+            $method = $this->helper->getRoundMethod();
             if($method != 'round') {
                 return $method($amount);
             }

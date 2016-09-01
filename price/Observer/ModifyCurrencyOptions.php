@@ -9,7 +9,7 @@ class ModifyCurrencyOptions implements ObserverInterface
     /**
      * @var \Magento\CurrencySymbol\Model\System\CurrencysymbolFactory
      */
-    protected $symbolFactory;
+    private $symbolFactory;
 
     /**
      * @param \Magento\CurrencySymbol\Model\System\CurrencysymbolFactory $symbolFactory

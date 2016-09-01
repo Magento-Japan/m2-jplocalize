@@ -19,7 +19,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
      */
     private $collection;
 
-    private $_localeResolver;
+    private $localeResolver;
 
     protected function setUp()
     {
@@ -27,7 +27,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         $loggerMock = $this->getMock(LoggerInterface::class);
         $fetchStrategyMock = $this->getMock(FetchStrategyInterface::class);
         $eventManagerMock = $this->getMock(ManagerInterface::class);
-        $this->_localeResolverMock = $this->getMock(ResolverInterface::class);
+        $this->localeResolverMock = $this->getMock(ResolverInterface::class);
         $connectionMock = $this->getMock(Mysql::class, [], [], '', false);
         $resourceMock = $this->getMockForAbstractClass(AbstractDb::class,
             [],
@@ -48,7 +48,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
             $loggerMock,
             $fetchStrategyMock,
             $eventManagerMock,
-            $this->_localeResolverMock,
+            $this->localeResolverMock,
             $connectionMock,
             $resourceMock
         );
@@ -56,7 +56,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
 
     public function testToOptionArrayForJp()
     {
-        $this->_localeResolverMock->expects($this->any())
+        $this->localeResolverMock->expects($this->any())
                     ->method('getLocale')
                     ->willReturn('ja_JP');
 
@@ -103,7 +103,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
 
     public function testToOptionArrayForEn()
     {
-        $this->_localeResolverMock->expects($this->any())
+        $this->localeResolverMock->expects($this->any())
             ->method('getLocale')
             ->willReturn('en_US');
 

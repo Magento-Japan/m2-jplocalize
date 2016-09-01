@@ -8,17 +8,17 @@ class ModifyPriceFormat
     /**
      * @var \Magento\Framework\App\ScopeResolverInterface
      */
-    protected $_scopeResolver;
+    private $scopeResolver;
 
     /**
      * @var \Magento\Framework\Locale\ResolverInterface
      */
-    protected $_localeResolver;
+    private $localeResolver;
 
     /**
      * @var \Magento\Directory\Model\CurrencyFactory
      */
-    protected $currencyFactory;
+    private $currencyFactory;
 
     /**
      * @param \Magento\Framework\App\ScopeResolverInterface $scopeResolver
@@ -30,8 +30,8 @@ class ModifyPriceFormat
         \Magento\Framework\Locale\ResolverInterface $localeResolver,
         \Magento\Directory\Model\CurrencyFactory $currencyFactory
     ) {
-        $this->_scopeResolver = $scopeResolver;
-        $this->_localeResolver = $localeResolver;
+        $this->scopeResolver = $scopeResolver;
+        $this->localeResolver = $localeResolver;
         $this->currencyFactory = $currencyFactory;
     }
 
@@ -50,7 +50,7 @@ class ModifyPriceFormat
         if ($currencyCode) {
             $currency = $this->currencyFactory->create()->load($currencyCode);
         } else {
-            $currency = $this->_scopeResolver->getScope()->getCurrentCurrency();
+            $currency = $this->scopeResolver->getScope()->getCurrentCurrency();
         }
 
         $result = $proceed($localeCode, $currencyCode);

@@ -5,24 +5,24 @@ use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
 
 class FormatTest extends \PHPUnit_Framework_TestCase
 {
-    protected $_formatPlugin;
+    private $formatPlugin;
 
-    protected $_priceCurrency;
+    private $priceCurrency;
 
-    protected $_closure;
+    private $closure;
 
     protected function setUp()
     {
         $objectManager = new ObjectManager($this);
-        $this->_formatPlugin =
+        $this->formatPlugin =
             $objectManager->getObject('Veriteworks\Price\Model\Directory\Plugin\Format');
 
-        $this->_priceCurrency =
+        $this->priceCurrency =
             $this->getMockBuilder('Magento\Directory\Model\PriceCurrency')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->_closure = function () {
+        $this->closure = function () {
             return '<span class="price">￥100.49</span>';
         };
     }
@@ -35,10 +35,10 @@ class FormatTest extends \PHPUnit_Framework_TestCase
         $currency->expects($this->atLeastOnce())
             ->method('formatPrecision')->willReturn('<span class="price">￥100</span>');
 
-        $this->_priceCurrency->expects($this->atLeastOnce())
+        $this->priceCurrency->expects($this->atLeastOnce())
             ->method('getCurrency')->willReturn($currency);
 
-        $this->assertEquals('<span class="price">￥100</span>', $this->_formatPlugin->aroundFormat($this->_priceCurrency, $this->_closure, 100.49, 2, null, null));
+        $this->assertEquals('<span class="price">￥100</span>', $this->formatPlugin->aroundFormat($this->priceCurrency, $this->closure, 100.49, 2, null, null));
     }
 
     public function testNonJpyAroundFormat()
@@ -49,9 +49,9 @@ class FormatTest extends \PHPUnit_Framework_TestCase
         $currency->expects($this->atLeastOnce())
             ->method('getCode')->willReturn('USD');
 
-        $this->_priceCurrency->expects($this->atLeastOnce())
+        $this->priceCurrency->expects($this->atLeastOnce())
             ->method('getCurrency')->willReturn($currency);
 
-        $this->assertNotEquals('<span class="price">￥100</span>', $this->_formatPlugin->aroundFormat($this->_priceCurrency, $this->_closure, 100.49, 2, null, null));
+        $this->assertNotEquals('<span class="price">￥100</span>', $this->formatPlugin->aroundFormat($this->priceCurrency, $this->closure, 100.49, 2, null, null));
     }
 }

@@ -8,12 +8,12 @@ class ModifyName
     /**
      * @var \Magento\Framework\Locale\ResolverInterface
      */
-    protected $_localeResolver;
+    private $localeResolver;
 
     /**
      * @var \Magento\Framework\DataObject\Copy\Config
      */
-    protected $_fieldsetConfig;
+    private $fieldsetConfig;
 
 
     /**
@@ -24,8 +24,8 @@ class ModifyName
         \Magento\Framework\Locale\ResolverInterface $localeResolver,
         \Magento\Framework\DataObject\Copy\Config $fieldsetConfig
     ) {
-        $this->_localeResolver = $localeResolver;
-        $this->_fieldsetConfig = $fieldsetConfig;
+        $this->localeResolver = $localeResolver;
+        $this->fieldsetConfig = $fieldsetConfig;
     }
 
     /**
@@ -38,7 +38,7 @@ class ModifyName
     )
     {
         $fields = [];
-        $customerAccount = $this->_fieldsetConfig->getFieldset('customer_account');
+        $customerAccount = $this->fieldsetConfig->getFieldset('customer_account');
         foreach ($customerAccount as $code => $field) {
             if (isset($field['name'])) {
                 $fields[$code] = $code;
@@ -54,7 +54,7 @@ class ModifyName
                 '\'\''
             );
         }
-        if($this->_localeResolver->getLocale() != 'ja_JP') {
+        if($this->localeResolver->getLocale() != 'ja_JP') {
             $concatenate[] = 'LTRIM(RTRIM({{firstname}}))';
         } else {
             $concatenate[] = 'LTRIM(RTRIM({{lastname}}))';
@@ -68,7 +68,7 @@ class ModifyName
                 '\'\''
             );
         }
-        if($this->_localeResolver->getLocale() != 'ja_JP') {
+        if($this->localeResolver->getLocale() != 'ja_JP') {
             $concatenate[] = 'LTRIM(RTRIM({{lastname}}))';
         } else {
             $concatenate[] = 'LTRIM(RTRIM({{firstname}}))';

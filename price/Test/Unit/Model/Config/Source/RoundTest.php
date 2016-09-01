@@ -12,7 +12,7 @@ class RoundTest extends \PHPUnit_Framework_TestCase
     /**
      * @var \Veriteworks\Price\Model\Config\Source\Round
      */
-    protected $_model;
+    private $model;
 
     /**
      *
@@ -21,7 +21,7 @@ class RoundTest extends \PHPUnit_Framework_TestCase
     {
         $objectManager = new ObjectManager($this);
 
-        $this->_model =
+        $this->model =
             $objectManager->getObject('Veriteworks\Price\Model\Config\Source\Round');
     }
 
@@ -30,6 +30,6 @@ class RoundTest extends \PHPUnit_Framework_TestCase
      */
     public function testToOptionArray()
     {
-        $this->assertArrayHasKey('round', $this->_model->toOptionArray());
+        $this->assertArrayHasKey('round', $this->model->toOptionArray());
     }
 }
