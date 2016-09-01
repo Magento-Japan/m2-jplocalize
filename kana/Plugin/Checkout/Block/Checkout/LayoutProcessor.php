@@ -147,7 +147,7 @@ class LayoutProcessor
     /**
      * @return \Magento\Customer\Api\Data\CustomerInterface|null
      */
-    private function _getCustomer()
+    private function getCustomer()
     {
         if (!$this->customer) {
             $_session = $this->customerSession;
