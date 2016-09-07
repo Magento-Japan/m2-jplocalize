@@ -38,7 +38,13 @@ class FormatTest extends \PHPUnit_Framework_TestCase
         $this->priceCurrency->expects($this->atLeastOnce())
             ->method('getCurrency')->willReturn($currency);
 
-        $this->assertEquals('<span class="price">￥100</span>', $this->formatPlugin->aroundFormat($this->priceCurrency, $this->closure, 100.49, 2, null, null));
+        $this->assertEquals('<span class="price">￥100</span>',
+            $this->formatPlugin->aroundFormat($this->priceCurrency,
+                                              $this->closure,
+                                              100.49,
+                                              2,
+                                              null,
+                                              null));
     }
 
     public function testNonJpyAroundFormat()
@@ -52,6 +58,12 @@ class FormatTest extends \PHPUnit_Framework_TestCase
         $this->priceCurrency->expects($this->atLeastOnce())
             ->method('getCurrency')->willReturn($currency);
 
-        $this->assertNotEquals('<span class="price">￥100</span>', $this->formatPlugin->aroundFormat($this->priceCurrency, $this->closure, 100.49, 2, null, null));
+        $this->assertNotEquals('<span class="price">￥100</span>',
+            $this->formatPlugin->aroundFormat($this->priceCurrency,
+                                              $this->closure,
+                                              100.49,
+                                              2,
+                                              null,
+                                              null));
     }
 }

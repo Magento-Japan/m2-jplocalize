@@ -20,7 +20,7 @@ class Precision
                                  \Closure $proceed,
                                 $price,
                                 $precision = 2,
-                                $options,
+                                $options = [],
                                 $includeContainer = true,
                                 $addBrackets = false
     )
