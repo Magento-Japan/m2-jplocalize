@@ -1,20 +1,44 @@
 <?php
+/**
+ * Observer for modify currency options
+ *
+ * PHP version 5, 7
+ *
+ * @category Observer
+ * @package  Veriteworks\Price\Observer
+ * @author   Veriteworks Inc. <info@veriteworks.co.jp>
+ * @license  Open Software License 3.0
+ * @link     https://principle-works.jp/
+ */
 namespace Veriteworks\Price\Observer;
 
-use Magento\Framework\Locale\Currency;
+use \Magento\CurrencySymbol\Model\System\CurrencysymbolFactory;
 use Magento\Framework\Event\ObserverInterface;
 
+/**
+ * Class ModifyCurrencyOptions
+ *
+ * @category Observer
+ * @package  Veriteworks\Price\Observer
+ * @author   Veriteworks Inc. <info@veriteworks.co.jp>
+ * @license  Open Software License 3.0
+ * @link     https://principle-works.jp/
+ */
 class ModifyCurrencyOptions implements ObserverInterface
 {
     /**
-     * @var \Magento\CurrencySymbol\Model\System\CurrencysymbolFactory
+     * Currency symbol factory
+     *
+     * @var CurrencysymbolFactory
      */
-    private $symbolFactory;
+    protected $symbolFactory;
 
     /**
-     * @param \Magento\CurrencySymbol\Model\System\CurrencysymbolFactory $symbolFactory
+     * Constructor
+     *
+     * @param CurrencysymbolFactory $symbolFactory Currency Symbol Factory
      */
-    public function __construct(\Magento\CurrencySymbol\Model\System\CurrencysymbolFactory $symbolFactory)
+    public function __construct(CurrencysymbolFactory $symbolFactory)
     {
         $this->symbolFactory = $symbolFactory;
     }
@@ -22,7 +46,8 @@ class ModifyCurrencyOptions implements ObserverInterface
     /**
      * Generate options for currency displaying with custom currency symbol
      *
-     * @param \Magento\Framework\Event\Observer $observer
+     * @param \Magento\Framework\Event\Observer $observer Observer
+     *
      * @return $this
      */
     public function execute(\Magento\Framework\Event\Observer $observer)
@@ -30,7 +55,12 @@ class ModifyCurrencyOptions implements ObserverInterface
         $baseCode = $observer->getEvent()->getBaseCode();
         $currencyOptions = $observer->getEvent()->getCurrencyOptions();
         $originalOptions = $currencyOptions->getData();
-        $currencyOptions->setData($this->getCurrencyOptions($baseCode, $originalOptions));
+        $currencyOptions->setData(
+            $this->getCurrencyOptions(
+                $baseCode,
+                $originalOptions
+            )
+        );
 
         return $this;
     }
@@ -38,8 +68,9 @@ class ModifyCurrencyOptions implements ObserverInterface
     /**
      * Get currency display options
      *
-     * @param string $baseCode
-     * @param array $originalOptions
+     * @param string $baseCode        Base currency code
+     * @param array  $originalOptions Currency Options
+     *
      * @return array
      */
     protected function getCurrencyOptions($baseCode, $originalOptions)
