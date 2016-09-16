@@ -91,7 +91,7 @@ class LayoutProcessor
                         $attribute = $this->getCustomer()
                             ->getCustomAttribute($key);
                         if(is_object($attribute)) {
-                            $shippingelement['value'] = $attribute;
+                            $shippingelement['value'] = $attribute->getValue();
                             if($requireKana) {
                                 $shippingelement['validation']['required-entry'] = true;
                             }
@@ -130,7 +130,7 @@ class LayoutProcessor
                             $attribute = $this->getCustomer()
                                 ->getCustomAttribute($key);
                             if(is_object($attribute)) {
-                                $billingElement['value'] = $attribute;
+                                $billingElement['value'] = $attribute->getValue();
                                 if($requireKana) {
                                     $billingElement['validation']['required-entry'] = true;
                                 }

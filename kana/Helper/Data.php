@@ -10,4 +10,5 @@ use Magento\Store\Model\ScopeInterface;
  */
 class Data extends AbstractHelper
 {
+
 }

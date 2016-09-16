@@ -1,4 +1,15 @@
 <?php
+/**
+ * Region Colleciton Test
+ *
+ * PHP version 5, 7
+ *
+ * @category Test
+ * @package  Veriteworks\Region\Test\Unit\Model\ResourceModel\Directory\Region
+ * @author   Veriteworks Inc. <info@veriteworks.co.jp>
+ * @license  Open Software License 3.0
+ * @link     https://principle-works.jp/
+ */
 namespace Veriteworks\Region\Test\Unit\Model\ResourceModel\Directory\Region;
 
 use Veriteworks\Region\Model\ResourceModel\Directory\Region\Collection;
@@ -12,15 +23,36 @@ use Magento\Framework\Locale\ResolverInterface;
 use Magento\Framework\DataObject;
 use Psr\Log\LoggerInterface;
 
+/**
+ * Region Collection Test
+ *
+ * @category Test
+ * @package  Veriteworks\Region\Test\Unit\Model\ResourceModel\Directory\Region
+ * @author   Veriteworks Inc. <info@veriteworks.co.jp>
+ * @license  Open Software License 3.0
+ * @link     https://principle-works.jp/
+ */
 class CollectionTest extends \PHPUnit_Framework_TestCase
 {
     /**
+     * Region collection
+     *
      * @var Collection
      */
-    private $collection;
+    protected $collection;
 
-    private $localeResolver;
+    /**
+     * Locale resolver
+     *
+     * @var ResolverInterface|\PHPUnit_Framework_MockObject_MockObject
+     */
+    protected $localeResolverMock;
 
+    /**
+     * Setup
+     *
+     * @return void
+     */
     protected function setUp()
     {
         $entityFactoryMock = $this->getMock(EntityFactory::class, [], [], '', false);
@@ -29,7 +61,8 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         $eventManagerMock = $this->getMock(ManagerInterface::class);
         $this->localeResolverMock = $this->getMock(ResolverInterface::class);
         $connectionMock = $this->getMock(Mysql::class, [], [], '', false);
-        $resourceMock = $this->getMockForAbstractClass(AbstractDb::class,
+        $resourceMock = $this->getMockForAbstractClass(
+            AbstractDb::class,
             [],
             '',
             false,
@@ -39,9 +72,15 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         );
 
         $selectMock = $this->getMock(Select::class, [], [], '', false);
-        $connectionMock->expects($this->any())->method('select')->will($this->returnValue($selectMock));
-        $resourceMock->expects($this->any())->method('getConnection')->will($this->returnValue($connectionMock));
-        $resourceMock->expects($this->any())->method('getTable')->will($this->returnArgument(0));
+        $connectionMock->expects($this->any())
+            ->method('select')
+            ->will($this->returnValue($selectMock));
+        $resourceMock->expects($this->any())
+            ->method('getConnection')
+            ->will($this->returnValue($connectionMock));
+        $resourceMock->expects($this->any())
+            ->method('getTable')
+            ->will($this->returnArgument(0));
 
         $this->collection = new Collection(
             $entityFactoryMock,
@@ -54,11 +93,18 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    /**
+     * Test for toOptionArray (Japanese)
+     *
+     * @return void
+     * @throws \Exception
+     */
     public function testToOptionArrayForJp()
     {
-        $this->localeResolverMock->expects($this->any())
-                    ->method('getLocale')
-                    ->willReturn('ja_JP');
+        $this->localeResolverMock
+            ->expects($this->any())
+            ->method('getLocale')
+            ->willReturn('ja_JP');
 
         $items = [
             [
@@ -101,9 +147,16 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expectedResult, $this->collection->toOptionArray());
     }
 
+    /**
+     * Test for toOptionArray (non-Japanese)
+     *
+     * @return void
+     * @throws \Exception
+     */
     public function testToOptionArrayForEn()
     {
-        $this->localeResolverMock->expects($this->any())
+        $this->localeResolverMock
+            ->expects($this->any())
             ->method('getLocale')
             ->willReturn('en_US');
 

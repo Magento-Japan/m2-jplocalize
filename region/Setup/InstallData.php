@@ -1,8 +1,15 @@
 <?php
 /**
- * Copyright © 2016 Veriteworks Inc. All rights reserved.
+ * Install data
+ *
+ * PHP version 5, 7
+ *
+ * @category Setup
+ * @package  Veriteworks\Region\Setup
+ * @author   Veriteworks Inc. <info@veriteworks.co.jp>
+ * @license  Open Software License 3.0
+ * @link     https://principle-works.jp/
  */
-
 namespace Veriteworks\Region\Setup;
 
 use Magento\Directory\Helper\Data;
@@ -11,7 +18,13 @@ use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 
 /**
- * @codeCoverageIgnore
+ * Install Data
+ *
+ * @category Setup
+ * @package  Veriteworks\Region\Setup
+ * @author   Veriteworks Inc. <info@veriteworks.co.jp>
+ * @license  Open Software License 3.0
+ * @link     https://principle-works.jp/
  */
 class InstallData implements InstallDataInterface
 {
@@ -20,21 +33,26 @@ class InstallData implements InstallDataInterface
      *
      * @var Data
      */
-    private $directoryData;
+    protected $directoryData;
 
     /**
-     * Init
+     * Constructor
      *
-     * @param Data $directoryData
+     * @param Data $directoryData Directory data
      */
     public function __construct(Data $directoryData)
     {
         $this->directoryData = $directoryData;
     }
 
+
     /**
-     * {@inheritdoc}
-     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
+     * Install Data
+     *
+     * @param ModuleDataSetupInterface $setup   Module Data Setup
+     * @param ModuleContextInterface   $context Module Context
+     *
+     * @return void
      */
     public function install(
         ModuleDataSetupInterface $setup,
