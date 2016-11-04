@@ -33,21 +33,21 @@ class ModifyPriceFormat
      *
      * @var \Magento\Framework\App\ScopeResolverInterface
      */
-    protected $scopeResolver;
+    private $_scopeResolver;
 
     /**
      * Locale Resolver
      *
      * @var \Magento\Framework\Locale\ResolverInterface
      */
-    protected $localeResolver;
+    private $_localeResolver;
 
     /**
      * Currency Factory
      *
      * @var \Magento\Directory\Model\CurrencyFactory
      */
-    protected $currencyFactory;
+    private $_currencyFactory;
 
     /**
      * Constructor
@@ -61,9 +61,9 @@ class ModifyPriceFormat
         ResolverInterface $localeResolver,
         CurrencyFactory $currencyFactory
     ) {
-        $this->scopeResolver = $scopeResolver;
-        $this->localeResolver = $localeResolver;
-        $this->currencyFactory = $currencyFactory;
+        $this->_scopeResolver = $scopeResolver;
+        $this->_localeResolver = $localeResolver;
+        $this->_currencyFactory = $currencyFactory;
     }
 
     /**
@@ -83,9 +83,9 @@ class ModifyPriceFormat
         $currencyCode = null
     ) {
         if ($currencyCode) {
-            $currency = $this->currencyFactory->create()->load($currencyCode);
+            $currency = $this->_currencyFactory->create()->load($currencyCode);
         } else {
-            $currency = $this->scopeResolver->getScope()->getCurrentCurrency();
+            $currency = $this->_scopeResolver->getScope()->getCurrentCurrency();
         }
 
         $result = $proceed($localeCode, $currencyCode);
@@ -95,5 +95,33 @@ class ModifyPriceFormat
             $result['requiredPrecision'] = '0';
         }
         return $result;
+    }
+
+    /**
+     * Remove comma from price on JPY
+     *
+     * @param \Magento\Framework\Locale\Format $subject
+     * @param $value
+     * @return array
+     */
+    public function beforeGetNumber(
+        Format $subject,
+        $value
+    ) {
+        $currency = $this->_scopeResolver->getScope()->getCurrentCurrency();
+        $locale   = $this->_localeResolver->getLocale();
+        $format = $subject->getPriceFormat($locale, $currency->getCode());
+
+        if($currency->getCode() == 'JPY') {
+            if($format['groupSymbol'] == '.')
+            {
+                $value = preg_replace('/\./', '', $value);
+                $value = preg_replace('/,/', '.', $value);
+            } else {
+                $value = preg_replace('/,/', '', $value);
+            }
+
+        }
+        return [$value];
     }
 }
