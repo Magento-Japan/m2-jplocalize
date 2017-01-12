@@ -4,17 +4,14 @@ namespace Veriteworks\Kana\Plugin\Checkout\Block\Checkout;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Customer\Api\CustomerRepositoryInterface as CustomerRepository;
 use Magento\Customer\Model\Session;
+use Veriteworks\Kana\Helper\Data;
 
 class LayoutProcessor
 {
     const CONFIG_ELEMENT_ORDER = 'localize/sort/';
     const CONFIG_COUNTRY_SHOW = 'localize/address/hide_country';
     const CONFIG_REQUIRE_KANA = 'localize/kana/require_kana';
-
-    /**
-     * @var \Magento\Framework\App\Config\ScopeConfigInterface
-     */
-    private $scopeConfig;
+    const CONFIG_FIELDS_ORDER = 'localize/address/change_fields_order';
 
     /**
      * @var CustomerRepository
@@ -32,19 +29,27 @@ class LayoutProcessor
     private $customer;
 
     /**
-     * ModifyPrice constructor.
+     * @var \Veriteworks\Kana\Helper\Data
+     */
+    private $helper;
+
+
+    /**
+     * LayoutProcessor constructor.
      * @param \Magento\Framework\View\Element\Context $context
-     * @param Session $customerSession
-     * @param CustomerRepository $customerRepository
+     * @param \Magento\Customer\Model\Session $customerSession
+     * @param \Magento\Customer\Api\CustomerRepositoryInterface $customerRepository
+     * @param \Veriteworks\Kana\Helper\Data $helper
      */
     public function __construct(
         \Magento\Framework\View\Element\Context $context,
         Session $customerSession,
-        CustomerRepository $customerRepository
+        CustomerRepository $customerRepository,
+        Data $helper
     ) {
-        $this->scopeConfig = $context->getScopeConfig();
         $this->customerSession = $customerSession;
         $this->customerRepository = $customerRepository;
+        $this->helper = $helper;
     }
 
     /**
@@ -56,43 +61,36 @@ class LayoutProcessor
         \Magento\Checkout\Block\Checkout\LayoutProcessor $subject,
         array  $jsLayout
     ) {
-        $locale = $this->scopeConfig->
-        getValue('general/locale/code', ScopeInterface::SCOPE_STORE);
-        $format = $this->scopeConfig->
-        getValue('localize/address/change_fields_order', ScopeInterface::SCOPE_STORE);
+        $locale = $this->helper->getLocale();
+        $format = $this->helper->getChangeFieldsOrder();
 
-        $hideCountry = $this->scopeConfig
-            ->getValue(self::CONFIG_COUNTRY_SHOW, ScopeInterface::SCOPE_STORE);
-        $requireKana  = $this->scopeConfig
-            ->getValue(self::CONFIG_REQUIRE_KANA, ScopeInterface::SCOPE_STORE);
+        $hideCountry = $this->helper->getShowCounry();
+        $requireKana = $this->helper->getRequireKana();
 
-        if($locale == 'ja_JP' && $format) {
+        if ($locale == 'ja_JP' && $format) {
             $shippingElements =& $jsLayout['components']['checkout']['children']
             ['steps']['children']['shipping-step']['children']['shippingAddress']
             ['children']['shipping-address-fieldset']['children'];
 
-            foreach($shippingElements as $key => &$shippingelement) {
-                if($key == 'region_id')
-                {
+            foreach ($shippingElements as $key => &$shippingelement) {
+                if ($key == 'region_id') {
                     $key = 'region';
                 }
                 $path = self::CONFIG_ELEMENT_ORDER . $key;
-                $config = $this->scopeConfig->getValue($path, ScopeInterface::SCOPE_STORE);
+                $config = $this->helper->getConfigValue($path);
                 $shippingelement['sortOrder'] = $config;
 
-                if($key == 'country_id' && $hideCountry)
-                {
+                if ($key == 'country_id' && $hideCountry) {
                     $shippingelement['visible'] = false;
                 }
 
-                if(in_array($key, ['firstnamekana', 'lastnamekana']))
-                {
-                    if($this->getCustomer()){
+                if (in_array($key, ['firstnamekana', 'lastnamekana'])) {
+                    if ($this->getCustomer()) {
                         $attribute = $this->getCustomer()
                             ->getCustomAttribute($key);
-                        if(is_object($attribute)) {
+                        if (is_object($attribute)) {
                             $shippingelement['value'] = $attribute->getValue();
-                            if($requireKana) {
+                            if ($requireKana) {
                                 $shippingelement['validation']['required-entry'] = true;
                             }
                         }
@@ -104,34 +102,30 @@ class LayoutProcessor
             ['steps']['children']['billing-step']['children']['payment']
             ['children']['payments-list']['children'];
 
-            foreach($payments as &$method) {
+            foreach ($payments as &$method) {
                 $elements =& $method['children']['form-fields']['children'];
-                if(!is_array($elements))
-                {
+                if (!is_array($elements)) {
                     continue;
                 }
                 foreach ($elements as $key => &$billingElement) {
-                    if($key == 'region_id')
-                    {
+                    if ($key == 'region_id') {
                         $key = 'region';
                     }
                     $path = self::CONFIG_ELEMENT_ORDER . $key;
-                    $config = $this->scopeConfig->getValue($path, ScopeInterface::SCOPE_STORE);
+                    $config = $this->helper->getConfigValue($path);
                     $billingElement['sortOrder'] = $config;
 
-                    if($key == 'country_id' && $hideCountry)
-                    {
+                    if ($key == 'country_id' && $hideCountry) {
                         $billingElement['visible'] = false;
                     }
 
-                    if(in_array($key, ['firstnamekana', 'lastnamekana']))
-                    {
-                        if($this->getCustomer()) {
+                    if (in_array($key, ['firstnamekana', 'lastnamekana'])) {
+                        if ($this->getCustomer()) {
                             $attribute = $this->getCustomer()
                                 ->getCustomAttribute($key);
-                            if(is_object($attribute)) {
+                            if (is_object($attribute)) {
                                 $billingElement['value'] = $attribute->getValue();
-                                if($requireKana) {
+                                if ($requireKana) {
                                     $billingElement['validation']['required-entry'] = true;
                                 }
                             }

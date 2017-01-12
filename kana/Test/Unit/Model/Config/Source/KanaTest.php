@@ -1,6 +1,6 @@
 <?php
 namespace Veriteworks\Kana\Test\Unit\Model\Config\Source;
-use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
+use Veriteworks\Kana\Model\Config\Source\Kana;
 
 
 /**
@@ -19,10 +19,7 @@ class KanaTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $objectManager = new ObjectManager($this);
-
-        $this->model =
-            $objectManager->getObject('Veriteworks\Kana\Model\Config\Source\Kana');
+        $this->model = new Kana();
     }
 
     /**
