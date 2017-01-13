@@ -38,7 +38,11 @@ class CopyKanaToCustomerAddress implements ObserverInterface
 
         $key = AbstractExtensibleObject::CUSTOM_ATTRIBUTES_KEY;
 
-        $target->setData($key, ['firstnamekana' => $fKana, 'lastnamekana' => $lKana]);
+        $target->setData($key,
+            [
+                'firstnamekana' => $fKana,
+                'lastnamekana' => $lKana
+            ]);
 
         return $this;
     }

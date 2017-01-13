@@ -9,9 +9,6 @@ use Veriteworks\Kana\Helper\Data;
 class LayoutProcessor
 {
     const CONFIG_ELEMENT_ORDER = 'localize/sort/';
-    const CONFIG_COUNTRY_SHOW = 'localize/address/hide_country';
-    const CONFIG_REQUIRE_KANA = 'localize/kana/require_kana';
-    const CONFIG_FIELDS_ORDER = 'localize/address/change_fields_order';
 
     /**
      * @var CustomerRepository
@@ -65,6 +62,7 @@ class LayoutProcessor
         $format = $this->helper->getChangeFieldsOrder();
 
         $hideCountry = $this->helper->getShowCounry();
+        $useKana = $this->helper->getUseKana();
         $requireKana = $this->helper->getRequireKana();
 
         if ($locale == 'ja_JP' && $format) {
@@ -90,7 +88,10 @@ class LayoutProcessor
                             ->getCustomAttribute($key);
                         if (is_object($attribute)) {
                             $shippingelement['value'] = $attribute->getValue();
-                            if ($requireKana) {
+                            if (!$useKana) {
+                                $shippingelement['visible'] = false;
+                            }
+                            if ($useKana && $requireKana) {
                                 $shippingelement['validation']['required-entry'] = true;
                             }
                         }
@@ -125,7 +126,10 @@ class LayoutProcessor
                                 ->getCustomAttribute($key);
                             if (is_object($attribute)) {
                                 $billingElement['value'] = $attribute->getValue();
-                                if ($requireKana) {
+                                if (!$useKana) {
+                                    $billingElement['visible'] = false;
+                                }
+                                if ($useKana && $requireKana) {
                                     $billingElement['validation']['required-entry'] = true;
                                 }
                             }

@@ -176,8 +176,41 @@ class DataTest extends \PHPUnit_Framework_TestCase
     public function getRequireKanaProvider()
     {
         return [
-            ['localize/kana/require_kana', '1', '1'],
-            ['localize/kana/require_kana', '0', '0'],
+            ['customer/address/require_kana', '1', '1'],
+            ['customer/address/require_kana', '0', '0'],
+        ];
+    }
+
+    /**
+     * @param $path
+     * @param $expected
+     * @param $result
+     *
+     * @dataProvider getUseKanaProvider
+     */
+    public function testGetUseKana($path, $expected, $result)
+    {
+        $map = [
+            [$path, ScopeInterface::SCOPE_STORE, null, $result]
+        ];
+
+        $this->scopeMock->expects(self::any())
+            ->method('getValue')
+            ->will($this->returnValueMap($map));
+
+        $value = $this->helper->getUseKana();
+
+        $this->assertEquals($expected, $value);
+    }
+
+    /**
+     * @return array
+     */
+    public function getUseKanaProvider()
+    {
+        return [
+            ['customer/address/use_kana', '1', '1'],
+            ['customer/address/use_kana', '0', '0'],
         ];
     }
 

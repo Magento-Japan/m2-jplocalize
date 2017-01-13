@@ -21,7 +21,12 @@ class Data extends AbstractHelper
     /**
      *
      */
-    const CONFIG_REQUIRE_KANA = 'localize/kana/require_kana';
+    const CONFIG_REQUIRE_KANA = 'customer/address/require_kana';
+
+    /**
+     *
+     */
+    const CONFIG_USE_KANA = 'customer/address/use_kana';
     /**
      *
      */
@@ -61,6 +66,14 @@ class Data extends AbstractHelper
     public function getRequireKana()
     {
         return $this->getConfigValue(self::CONFIG_REQUIRE_KANA);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUseKana()
+    {
+        return $this->getConfigValue(self::CONFIG_USE_KANA);
     }
 
     /**
