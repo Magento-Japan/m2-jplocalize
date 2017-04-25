@@ -39,4 +39,12 @@ class Data extends AbstractHelper
         );
     }
 
+    public function getSymbolPosition()
+    {
+        return $this->scopeConfig->getValue(
+            'price/symbol/position',
+            ScopeInterface::SCOPE_STORE
+        );
+    }
+
 }

@@ -13,6 +13,7 @@
 namespace Veriteworks\Price\Model\Directory\Plugin;
 
 use Magento\Directory\Model\Currency;
+use Veriteworks\Price\Helper\Data;
 
 /**
  * Class Precision
@@ -25,6 +26,22 @@ use Magento\Directory\Model\Currency;
  */
 class Precision
 {
+    /**
+     * Helper
+     *
+     * @var \Veriteworks\Price\Helper\Data
+     */
+    private $helper;
+
+    /**
+     * Precision constructor.
+     * @param Data $helper
+     */
+    public function __construct(
+        Data $helper
+    ) {
+        $this->helper = $helper;
+    }
 
     /**
      * Modify price precision for JPY
@@ -60,6 +77,36 @@ class Precision
             $options,
             $includeContainer,
             $addBrackets);
+    }
+
+    /**
+     * Modify Currency Position
+     *
+     * @param Currency $subject
+     * @param \Closure $proceed
+     * @param $price
+     * @param array $options
+     * @return mixed
+     */
+    public function aroundFormatTxt(
+        Currency  $subject,
+        \Closure $proceed,
+        $price,
+        $options = []
+    )
+    {
+        if ($subject->getCode() == 'JPY') {
+            $position = $this->helper->getSymbolPosition();
+            $options['position'] = (int)$position;
+            if($options['position'] == \Zend_Currency::RIGHT) {
+                $options['symbol'] = __('Yen');
+            }
+        }
+
+        return $proceed(
+            $price,
+            $options
+        );
     }
 
 }

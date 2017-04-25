@@ -6,5 +6,10 @@
                 <round>floor</round>
             </calculation>
         </tax>
+        <price>
+            <symbol>
+                <position>32</position>
+            </symbol>
+        </price>
     </default>
 </config>
