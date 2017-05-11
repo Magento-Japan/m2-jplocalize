@@ -95,6 +95,10 @@ class LayoutProcessor
                                 $shippingelement['validation']['required-entry'] = true;
                             }
                         }
+                    } else {
+                        if ($useKana && $requireKana) {
+                            $shippingelement['validation']['required-entry'] = true;
+                        }
                     }
                 }
             }
@@ -132,6 +136,10 @@ class LayoutProcessor
                                 if ($useKana && $requireKana) {
                                     $billingElement['validation']['required-entry'] = true;
                                 }
+                            }
+                        } else {
+                            if ($useKana && $requireKana) {
+                                $billingElement['validation']['required-entry'] = true;
                             }
                         }
                     }
