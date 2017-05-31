@@ -13,6 +13,10 @@
         <plugin name="modify_name" type="Veriteworks\Kana\Plugin\Customer\Model\Name" sortOrder="100"/>
     </type>
 
+    <type name="Magento\Sales\Model\Order">
+        <plugin name="modify_name" type="Veriteworks\Kana\Plugin\Sales\Model\CustomerName" sortOrder="100"/>
+    </type>
+
     <type name="Magento\Customer\Helper\View">
         <plugin name="modify_name" type="Veriteworks\Kana\Plugin\Helper\Name" sortOrder="100" />
     </type>
