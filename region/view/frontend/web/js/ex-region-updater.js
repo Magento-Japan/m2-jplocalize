@@ -20,6 +20,10 @@ define([
             isMultipleCountriesAllowed: true
         },
 
+        /**
+         *
+         * @private
+         */
         _create: function () {
             this._initCountryElement();
 
@@ -38,12 +42,18 @@ define([
             }, this));
         },
 
-        _initCountryElement: function() {
+        /**
+         *
+         * @private
+         */
+        _initCountryElement: function () {
+
             if (this.options.isMultipleCountriesAllowed) {
                 this.element.parents('div.field').show();
                 this.element.on('change', $.proxy(function (e) {
                     this._updateRegion($(e.target).val());
                 }, this));
+
                 if (this.options.isCountryRequired) {
                     this.element.addClass('required-entry');
                     this.element.parents('div.field').addClass('required');
@@ -55,6 +65,7 @@ define([
 
         /**
          * Remove options from dropdown list
+         *
          * @param {Object} selectElement - jQuery object for dropdown list
          * @private
          */
@@ -108,7 +119,7 @@ define([
          * @private
          */
         _clearError: function () {
-            if (this.options.clearError && typeof (this.options.clearError) === 'function') {
+            if (this.options.clearError && typeof this.options.clearError === 'function') {
                 this.options.clearError.call(this);
             } else {
                 if (!this.options.form) {
@@ -117,8 +128,13 @@ define([
 
                 this.options.form = $(this.options.form);
 
-                this.options.form && this.options.form.data('validation') && this.options.form.validation('clearError',
+                this.options.form && this.options.form.data('validator') && this.options.form.validation('clearError',
                     this.options.regionListId, this.options.regionInputId, this.options.postcodeId);
+
+                // Clean up errors on region & zip fix
+                $(this.options.regionInputId).removeClass('mage-error').parent().find('[generated]').remove();
+                $(this.options.regionListId).removeClass('mage-error').parent().find('[generated]').remove();
+                $(this.options.postcodeId).removeClass('mage-error').parent().find('[generated]').remove();
             }
         },
         /**
@@ -177,11 +193,12 @@ define([
                     if (!this.options.optionalRegionAllowed) {
                         regionInput.attr('disabled', 'disabled');
                     }
+                    requiredLabel.removeClass('required');
+                    regionInput.removeClass('required-entry');
                 }
 
                 regionList.removeClass('required-entry').hide();
                 regionInput.show();
-                requiredLabel.removeClass('required');
                 label.attr('for', regionInput.attr('id'));
             }
 
@@ -203,10 +220,11 @@ define([
          * @private
          */
         _checkRegionRequired: function (country) {
-            this.options.isRegionRequired = false;
             var self = this;
+
+            this.options.isRegionRequired = false;
             $.each(this.options.regionJson.config.regions_required, function (index, elem) {
-                if (elem == country) {
+                if (elem === country) {
                     self.options.isRegionRequired = true;
                 }
             });
