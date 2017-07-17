@@ -132,7 +132,9 @@ class UpgradeData implements UpgradeDataInterface
                 'code' => $row[2],
                 'default_name' => $row[2]
             ];
-            $connection->update($regionTable, $bind, "code='" . $row[1] . "'");
+            $cond = "code='" . $row[1] . "'";
+            $cond .= " and country_id='" . $row[0] . "'";
+            $connection->update($regionTable, $bind, $cond);
         }
     }
 }
