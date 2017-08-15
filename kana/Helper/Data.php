@@ -31,6 +31,8 @@ class Data extends AbstractHelper
      *
      */
     const CONFIG_FIELDS_ORDER = 'localize/address/change_fields_order';
+
+    const CONFIG_CHECKOUT_SORT = 'localize/sort/change_fields_order';
     /**
      *
      */
@@ -83,6 +85,12 @@ class Data extends AbstractHelper
     {
         return $this->getConfigValue(self::CONFIG_FIELDS_ORDER);
     }
+
+    public function getSortOrder()
+    {
+        return $this->getConfigValue(self::CONFIG_CHECKOUT_SORT);
+    }
+
 
     /**
      * @param $key

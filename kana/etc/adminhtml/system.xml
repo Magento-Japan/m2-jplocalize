@@ -43,41 +43,81 @@
             </group>
             <group id="sort" translate="label" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Checkout address fields sort order</label>
-                <field id="lastname" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="change_fields_order" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Customize checkout fields sort order</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="lastname" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Last Name</label>
+                    <depends>
+                        <field id="change_fields_order">1</field>
+                    </depends>
                 </field>
-                <field id="firstname" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="firstname" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>First Name</label>
+                    <depends>
+                        <field id="change_fields_order">1</field>
+                    </depends>
                 </field>
-                <field id="lastnamekana" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="lastnamekana" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Last name kana</label>
+                    <depends>
+                        <field id="change_fields_order">1</field>
+                    </depends>
                 </field>
-                <field id="firstnamekana" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="firstnamekana" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>First name kana</label>
+                    <depends>
+                        <field id="change_fields_order">1</field>
+                    </depends>
                 </field>
-                <field id="country_id" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="country_id" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Country</label>
+                    <depends>
+                        <field id="change_fields_order">1</field>
+                    </depends>
                 </field>
-                <field id="region" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="region" translate="label" type="text" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Region/State</label>
+                    <depends>
+                        <field id="change_fields_order">1</field>
+                    </depends>
                 </field>
-                <field id="city" translate="label" type="text" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="city" translate="label" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>City</label>
+                    <depends>
+                        <field id="change_fields_order">1</field>
+                    </depends>
                 </field>
-                <field id="street" translate="label" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="street" translate="label" type="text" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Address</label>
+                    <depends>
+                        <field id="change_fields_order">1</field>
+                    </depends>
                 </field>
-                <field id="postcode" translate="label" type="text" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="postcode" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Zip/Post Code</label>
+                    <depends>
+                        <field id="change_fields_order">1</field>
+                    </depends>
                 </field>
-                <field id="telephone" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="telephone" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Telephone</label>
+                    <depends>
+                        <field id="change_fields_order">1</field>
+                    </depends>
                 </field>
-                <field id="fax" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="fax" translate="label" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Fax</label>
+                    <depends>
+                        <field id="change_fields_order">1</field>
+                    </depends>
                 </field>
-                <field id="company" translate="label" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="company" translate="label" type="text" sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Company</label>
+                    <depends>
+                        <field id="change_fields_order">1</field>
+                    </depends>
                 </field>
             </group>
         </section>

@@ -59,13 +59,13 @@ class LayoutProcessor
         array  $jsLayout
     ) {
         $locale = $this->helper->getLocale();
-        $format = $this->helper->getChangeFieldsOrder();
+        $format = $this->helper->getSortOrder();
 
         $hideCountry = $this->helper->getShowCounry();
         $useKana = $this->helper->getUseKana();
         $requireKana = $this->helper->getRequireKana();
 
-        if ($locale == 'ja_JP' && $format) {
+        if ($format) {
             $shippingElements =& $jsLayout['components']['checkout']['children']
             ['steps']['children']['shipping-step']['children']['shippingAddress']
             ['children']['shipping-address-fieldset']['children'];
@@ -88,7 +88,7 @@ class LayoutProcessor
                             ->getCustomAttribute($key);
                         if (is_object($attribute)) {
                             $shippingelement['value'] = $attribute->getValue();
-                            if (!$useKana) {
+                            if ($useKana != '1') {
                                 $shippingelement['visible'] = false;
                             }
                             if ($useKana && $requireKana) {
@@ -96,6 +96,9 @@ class LayoutProcessor
                             }
                         }
                     } else {
+                        if ($useKana != '1') {
+                            $shippingelement['visible'] = false;
+                        }
                         if ($useKana && $requireKana) {
                             $shippingelement['validation']['required-entry'] = true;
                         }
@@ -130,7 +133,7 @@ class LayoutProcessor
                                 ->getCustomAttribute($key);
                             if (is_object($attribute)) {
                                 $billingElement['value'] = $attribute->getValue();
-                                if (!$useKana) {
+                                if ($useKana != '1') {
                                     $billingElement['visible'] = false;
                                 }
                                 if ($useKana && $requireKana) {
@@ -138,6 +141,9 @@ class LayoutProcessor
                                 }
                             }
                         } else {
+                            if ($useKana != '1') {
+                                $billingElement['visible'] = false;
+                            }
                             if ($useKana && $requireKana) {
                                 $billingElement['validation']['required-entry'] = true;
                             }

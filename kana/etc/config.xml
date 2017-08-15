@@ -3,6 +3,7 @@
     <default>
         <localize>
             <sort>
+                <change_fields_order>1</change_fields_order>
                 <lastname>1</lastname>
                 <firstname>2</firstname>
                 <lastnamekana>3</lastnamekana>

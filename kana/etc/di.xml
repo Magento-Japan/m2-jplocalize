@@ -17,6 +17,10 @@
         <plugin name="modify_name" type="Veriteworks\Kana\Plugin\Sales\Model\CustomerName" sortOrder="100"/>
     </type>
 
+    <type name="Magento\Sales\Model\Order\Address">
+        <plugin name="modify_name" type="Veriteworks\Kana\Plugin\Sales\Model\Order\AddressName" sortOrder="100"/>
+    </type>
+
     <type name="Magento\Customer\Helper\View">
         <plugin name="modify_name" type="Veriteworks\Kana\Plugin\Helper\Name" sortOrder="100" />
     </type>
@@ -31,6 +35,10 @@
 
     <type name="Magento\Customer\CustomerData\Customer">
         <plugin name="assign_lname" type="Veriteworks\Kana\Plugin\Customer\CustomerDataModifier" sortOrder="100"/>
+    </type>
+
+    <type name="Magento\Reports\Model\ResourceModel\Order\Collection">
+        <plugin name="modify_name" type="Veriteworks\Kana\Plugin\Reports\Order\Collection\ModifyName" sortOrder="100"/>
     </type>
 
     <type name="Magento\Quote\Model\QuoteAddressValidator">
