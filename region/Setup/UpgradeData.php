@@ -61,6 +61,10 @@ class UpgradeData implements UpgradeDataInterface
         if (version_compare($context->getVersion(), '1.0.3')) {
             $this->upgradeCode($setup);
         }
+
+        if (version_compare($context->getVersion(), '1.0.4')) {
+            $this->addJpToRequiredRegionCountries();
+        }
     }
 
     /**

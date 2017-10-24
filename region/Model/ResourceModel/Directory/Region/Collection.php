@@ -40,10 +40,11 @@ class Collection extends \Magento\Directory\Model\ResourceModel\Region\Collectio
         $this->_countryTable = $this->getTable('directory_country');
         $this->_regionNameTable = $this->getTable('directory_country_region_name');
 
-        if ($this->_localeResolver->getLocale() != 'ja_JP') {
-            $this->addOrder('name', DataCollection::SORT_ORDER_ASC);
-            $this->addOrder('default_name', DataCollection::SORT_ORDER_ASC);
-        }
+//        if ($this->_localeResolver->getLocale() != 'ja_JP') {
+//            $this->addOrder('name', DataCollection::SORT_ORDER_ASC);
+//            $this->addOrder('default_name', DataCollection::SORT_ORDER_ASC);
+//        }
+        $this->addOrder('region_id', DataCollection::SORT_ORDER_ASC);
     }
 
 }
