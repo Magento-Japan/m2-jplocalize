@@ -4,7 +4,7 @@
     <update handle="customer_account"/>
     <body>
         <referenceContainer name="content">
-            <referenceBlock name="customer_edit" template="form/edit.phtml" cacheable="false">
+            <referenceBlock name="customer_edit">
                 <action method="setTemplate" ifconfig="localize/address/change_fields_order">
                     <argument name="template" xsi:type="string">Veriteworks_Kana::customer/form/jpedit.phtml</argument>
                 </action>

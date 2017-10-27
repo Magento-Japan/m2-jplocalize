@@ -1,8 +1,4 @@
 <?php
-/**
- * Copyright © 2016 Veriteworks Inc. All rights reserved.
- */
-
 namespace Veriteworks\Kana\Setup;
 
 use Magento\Directory\Helper\Data;
@@ -57,7 +53,7 @@ class InstallData implements InstallDataInterface
                     'required' => false,
                     'system' => 0,
                     'sort_order' => 45,
-                    'validate_rules' => 'a:2:{s:15:"max_text_length";i:255;s:15:"min_text_length";i:1;}',
+                    'validate_rules' => '{"max_text_length":255,"min_text_length":1}',
                     'position' => 45,
                     'label' => 'First name kana',
                 ],
@@ -69,7 +65,7 @@ class InstallData implements InstallDataInterface
                     'required' => false,
                     'system' => 0,
                     'sort_order' => 65,
-                    'validate_rules' => 'a:2:{s:15:"max_text_length";i:255;s:15:"min_text_length";i:1;}',
+                    'validate_rules' => '{"max_text_length":255,"min_text_length":1}',
                     'position' => 65,
                     'label' => 'Last name kana',
                 ]

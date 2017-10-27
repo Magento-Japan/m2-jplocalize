@@ -110,9 +110,11 @@ class LayoutProcessor
             ['steps']['children']['billing-step']['children']['payment']
             ['children']['payments-list']['children'];
 
-            foreach ($payments as &$method) {
+            foreach ($payments as $_key => &$method) {
+                $method['dataScopePrefix'] = $_key;
                 $elements =& $method['children']['form-fields']['children'];
                 if (!is_array($elements)) {
+                    $elements = [];
                     continue;
                 }
                 foreach ($elements as $key => &$billingElement) {
