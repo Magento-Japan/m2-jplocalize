@@ -35,13 +35,22 @@ class Format
     protected $scopeConfig;
 
     /**
-     * ModifyPrice constructor.
-     *
-     * @param Context $context Context
+     * @var \Veriteworks\Price\Helper\Data
      */
-    public function __construct(Context $context)
-    {
+    private $helper;
+
+
+    /**
+     * Format constructor.
+     * @param Context $context
+     * @param \Veriteworks\Price\Helper\Data $helper
+     */
+    public function __construct(
+        Context $context,
+        \Veriteworks\Price\Helper\Data $helper
+    ) {
         $this->scopeConfig = $context->getScopeConfig();
+        $this->helper = $helper;
     }
 
     /**
@@ -68,6 +77,10 @@ class Format
     ) {
         if ($subject->getCurrency()->getCode() == 'JPY') {
             $precision = '0';
+
+            $method = $this->helper->getRoundMethod($scope);
+            $amount = $method($amount);
+
             return $subject->getCurrency($scope, $currency)
                 ->formatPrecision($amount, $precision, [], $includeContainer);
         }

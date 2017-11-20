@@ -16,6 +16,7 @@ use Magento\Framework\Locale\Format;
 use \Magento\Framework\App\ScopeResolverInterface;
 use \Magento\Framework\Locale\ResolverInterface;
 use \Magento\Directory\Model\CurrencyFactory;
+use Veriteworks\Price\Helper\Data;
 
 /**
  * Class ModifyPriceFormat
@@ -50,20 +51,28 @@ class ModifyPriceFormat
     private $_currencyFactory;
 
     /**
+     * @var Data
+     */
+    private $helper;
+
+    /**
      * Constructor
      *
      * @param ScopeResolverInterface $scopeResolver   Scope Resolver
      * @param ResolverInterface      $localeResolver  Locale Resolver
      * @param CurrencyFactory        $currencyFactory Currency Resolver
+     * @param Data                                    $helper  Helper
      */
     public function __construct(
         ScopeResolverInterface $scopeResolver,
         ResolverInterface $localeResolver,
-        CurrencyFactory $currencyFactory
+        CurrencyFactory $currencyFactory,
+        Data $helper
     ) {
         $this->_scopeResolver = $scopeResolver;
         $this->_localeResolver = $localeResolver;
         $this->_currencyFactory = $currencyFactory;
+        $this->helper = $helper;
     }
 
     /**
@@ -90,7 +99,7 @@ class ModifyPriceFormat
 
         $result = $proceed($localeCode, $currencyCode);
 
-        if ($currency->getCode() == 'JPY') {
+        if (in_array($currency->getCode() ,$this->helper->getIntegerCurrencies())) {
             $result['precision'] = '0';
             $result['requiredPrecision'] = '0';
         }
@@ -112,7 +121,7 @@ class ModifyPriceFormat
         $locale   = $this->_localeResolver->getLocale();
         $format = $subject->getPriceFormat($locale, $currency->getCode());
 
-        if($currency->getCode() == 'JPY') {
+        if (in_array($currency->getCode() ,$this->helper->getIntegerCurrencies())) {
             if($format['groupSymbol'] == '.')
             {
                 $value = preg_replace('/\./', '', $value);

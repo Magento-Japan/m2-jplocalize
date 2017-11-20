@@ -47,4 +47,25 @@ class Data extends AbstractHelper
         );
     }
 
+    public function getIntegerCurrencies()
+    {
+        return [
+            'BIF',
+            'MGA',
+            'CLP',
+            'DJF',
+            'PYG',
+            'RWF',
+            'GNF',
+            'JPY',
+            'VND',
+            'VUV',
+            'XAF',
+            'KMF',
+            'XOF',
+            'KRW',
+            'XPF',
+            'TWD'
+        ];
+    }
 }

@@ -14,6 +14,7 @@ namespace Veriteworks\Price\Observer;
 
 use \Magento\CurrencySymbol\Model\System\CurrencysymbolFactory;
 use Magento\Framework\Event\ObserverInterface;
+use Veriteworks\Price\Helper\Data;
 
 /**
  * Class ModifyCurrencyOptions
@@ -33,14 +34,20 @@ class ModifyCurrencyOptions implements ObserverInterface
      */
     protected $symbolFactory;
 
+    private $helper;
+
     /**
      * Constructor
      *
      * @param CurrencysymbolFactory $symbolFactory Currency Symbol Factory
+     * @param Data $helper
      */
-    public function __construct(CurrencysymbolFactory $symbolFactory)
-    {
+    public function __construct(
+        CurrencysymbolFactory $symbolFactory,
+        Data $helper
+    ) {
         $this->symbolFactory = $symbolFactory;
+        $this->helper = $helper;
     }
 
     /**
@@ -76,7 +83,7 @@ class ModifyCurrencyOptions implements ObserverInterface
     protected function getCurrencyOptions($baseCode, $originalOptions)
     {
         $currencyOptions = [];
-        if ($baseCode == 'JPY') {
+        if (in_array($baseCode, $this->helper->getIntegerCurrencies())) {
             $currencyOptions['precision'] = '0';
         }
 
