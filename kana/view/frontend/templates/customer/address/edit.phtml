@@ -5,7 +5,7 @@
  * @var \Magento\Customer\Block\Address\Edit $block
  */
 ?>
-<form class="form-address-edit" action="<?php echo $block->escapeUrl($block->getSaveUrl()) ?>" method="post" id="form-validate" enctype="multipart/form-data" data-hasrequired="<?php echo $this->helper(\Magento\Framework\EscapeHelper::class)->escapeHtmlAttr(__('* Required Fields')) ?>">
+<form class="form-address-edit" action="<?php echo $block->escapeUrl($block->getSaveUrl()) ?>" method="post" id="form-validate" enctype="multipart/form-data" data-hasrequired="<?php echo $block->escapeHtmlAttr(__('* Required Fields')) ?>">
     <fieldset class="fieldset">
         <legend class="legend"><span><?php echo $block->escapeHtml(__('Contact Information')) ?></span></legend><br>
         <?php echo $block->getBlockHtml('formkey')?>
@@ -15,19 +15,19 @@
         <div class="field company">
             <label class="label" for="company"><span><?php echo $block->escapeHtml(__('Company')) ?></span></label>
             <div class="control">
-                <input type="text" name="company" id="company" title="<?php echo $this->helper(\Magento\Framework\EscapeHelper::class)->escapeHtmlAttr(__('Company')) ?>" value="<?php echo $this->helper(\Magento\Framework\EscapeHelper::class)->escapeHtmlAttr($block->getAddress()->getCompany()) ?>" class="input-text <?php echo $this->helper(\Magento\Framework\EscapeHelper::class)->escapeHtmlAttr($this->helper(\Magento\Customer\Helper\Address::class)->getAttributeValidationClass('company')) ?>">
+                <input type="text" name="company" id="company" title="<?php echo $block->escapeHtmlAttr(__('Company')) ?>" value="<?php echo $block->escapeHtmlAttr($block->getAddress()->getCompany()) ?>" class="input-text <?php echo $block->escapeHtmlAttr($this->helper(\Magento\Customer\Helper\Address::class)->getAttributeValidationClass('company')) ?>">
             </div>
         </div>
         <div class="field telephone required">
             <label class="label" for="telephone"><span><?php echo $block->escapeHtml(__('Phone Number')) ?></span></label>
             <div class="control">
-                <input type="text" name="telephone" value="<?php echo $this->helper(\Magento\Framework\EscapeHelper::class)->escapeHtmlAttr($block->getAddress()->getTelephone()) ?>" title="<?php echo $this->helper(\Magento\Framework\EscapeHelper::class)->escapeHtmlAttr(__('Phone Number')) ?>" class="input-text <?php echo $this->helper(\Magento\Framework\EscapeHelper::class)->escapeHtmlAttr($this->helper(\Magento\Customer\Helper\Address::class)->getAttributeValidationClass('telephone')) ?>" id="telephone">
+                <input type="text" name="telephone" value="<?php echo $block->escapeHtmlAttr($block->getAddress()->getTelephone()) ?>" title="<?php echo $block->escapeHtmlAttr(__('Phone Number')) ?>" class="input-text <?php echo $block->escapeHtmlAttr($this->helper(\Magento\Customer\Helper\Address::class)->getAttributeValidationClass('telephone')) ?>" id="telephone">
             </div>
         </div>
         <div class="field fax">
             <label class="label" for="fax"><span><?php echo $block->escapeHtml(__('Fax')) ?></span></label>
             <div class="control">
-                <input type="text" name="fax" id="fax" title="<?php echo $this->helper(\Magento\Framework\EscapeHelper::class)->escapeHtmlAttr(__('Fax')) ?>" value="<?php echo $this->helper(\Magento\Framework\EscapeHelper::class)->escapeHtmlAttr($block->getAddress()->getFax()) ?>" class="input-text <?php echo $this->helper(\Magento\Framework\EscapeHelper::class)->escapeHtmlAttr($this->helper(\Magento\Customer\Helper\Address::class)->getAttributeValidationClass('fax')) ?>">
+                <input type="text" name="fax" id="fax" title="<?php echo $block->escapeHtmlAttr(__('Fax')) ?>" value="<?php echo $block->escapeHtmlAttr($block->getAddress()->getFax()) ?>" class="input-text <?php echo $block->escapeHtmlAttr($this->helper(\Magento\Customer\Helper\Address::class)->getAttributeValidationClass('fax')) ?>">
             </div>
         </div>
     </fieldset>
@@ -46,22 +46,22 @@
         <div class="field zip required">
             <label class="label" for="zip"><span><?php echo $block->escapeHtml(__('Zip/Postal Code')) ?></span></label>
             <div class="control">
-                <input type="text" name="postcode" value="<?php echo $this->helper(\Magento\Framework\EscapeHelper::class)->escapeHtmlAttr($block->getAddress()->getPostcode()) ?>" title="<?php echo $this->helper(\Magento\Framework\EscapeHelper::class)->escapeHtmlAttr(__('Zip/Postal Code')) ?>" id="zip" class="input-text validate-zip-international <?php echo $this->helper(\Magento\Framework\EscapeHelper::class)->escapeHtmlAttr($this->helper(\Magento\Customer\Helper\Address::class)->getAttributeValidationClass('postcode')) ?>">
+                <input type="text" name="postcode" value="<?php echo $block->escapeHtmlAttr($block->getAddress()->getPostcode()) ?>" title="<?php echo $block->escapeHtmlAttr(__('Zip/Postal Code')) ?>" id="zip" class="input-text validate-zip-international <?php echo $block->escapeHtmlAttr($this->helper(\Magento\Customer\Helper\Address::class)->getAttributeValidationClass('postcode')) ?>">
             </div>
         </div>
         <div class="field region required">
             <label class="label" for="region_id"><span><?php echo $block->escapeHtml(__('State/Province')) ?></span></label>
             <div class="control">
-                <select id="region_id" name="region_id" title="<?php echo $this->helper(\Magento\Framework\EscapeHelper::class)->escapeHtmlAttr(__('State/Province')) ?>" class="validate-select" <?php echo(!$block->getConfig('general/region/display_all')) ? ' disabled="disabled"' : '';?>>
+                <select id="region_id" name="region_id" title="<?php echo $block->escapeHtmlAttr(__('State/Province')) ?>" class="validate-select" <?php echo(!$block->getConfig('general/region/display_all')) ? ' disabled="disabled"' : '';?>>
                     <option value=""><?php echo $block->escapeHtml(__('Please select a region, state or province.')) ?></option>
                 </select>
-                <input type="text" id="region" name="region" value="<?php echo $this->helper(\Magento\Framework\EscapeHelper::class)->escapeHtmlAttr($block->getRegion()) ?>"  title="<?php echo $this->helper(\Magento\Framework\EscapeHelper::class)->escapeHtmlAttr(__('State/Province')) ?>" class="input-text <?php echo $this->helper(\Magento\Framework\EscapeHelper::class)->escapeHtmlAttr($this->helper(\Magento\Customer\Helper\Address::class)->getAttributeValidationClass('region')) ?>"<?php echo(!$block->getConfig('general/region/display_all')) ? ' disabled="disabled"' : '';?>/>
+                <input type="text" id="region" name="region" value="<?php echo $block->escapeHtmlAttr($block->getRegion()) ?>"  title="<?php echo $block->escapeHtmlAttr(__('State/Province')) ?>" class="input-text <?php echo $block->escapeHtmlAttr($this->helper(\Magento\Customer\Helper\Address::class)->getAttributeValidationClass('region')) ?>"<?php echo(!$block->getConfig('general/region/display_all')) ? ' disabled="disabled"' : '';?>/>
             </div>
         </div>
         <div class="field city required">
             <label class="label" for="city"><span><?php echo $block->escapeHtml(__('City')) ?></span></label>
             <div class="control">
-                <input type="text" name="city" value="<?php echo $this->helper(\Magento\Framework\EscapeHelper::class)->escapeHtmlAttr($block->getAddress()->getCity()) ?>" title="<?php echo $this->helper(\Magento\Framework\EscapeHelper::class)->escapeHtmlAttr(__('City')) ?>" class="input-text <?php echo $this->helper(\Magento\Framework\EscapeHelper::class)->escapeHtmlAttr($this->helper(\Magento\Customer\Helper\Address::class)->getAttributeValidationClass('city')) ?>" id="city">
+                <input type="text" name="city" value="<?php echo $block->escapeHtmlAttr($block->getAddress()->getCity()) ?>" title="<?php echo $block->escapeHtmlAttr(__('City')) ?>" class="input-text <?php echo $block->escapeHtmlAttr($this->helper(\Magento\Customer\Helper\Address::class)->getAttributeValidationClass('city')) ?>" id="city">
             </div>
         </div>
 
@@ -69,7 +69,7 @@
         <div class="field street required">
             <label for="street_1" class="label"><span><?php echo $block->escapeHtml(__('Street Address')) ?></span></label>
             <div class="control">
-                <input type="text" name="street[]" value="<?php echo $this->helper(\Magento\Framework\EscapeHelper::class)->escapeHtmlAttr($block->getStreetLine(1)) ?>" title="<?php echo $this->helper(\Magento\Framework\EscapeHelper::class)->escapeHtmlAttr(__('Street Address')) ?>" id="street_1" class="input-text <?php echo $this->helper(\Magento\Framework\EscapeHelper::class)->escapeHtmlAttr($_streetValidationClass) ?>"  />
+                <input type="text" name="street[]" value="<?php echo $block->escapeHtmlAttr($block->getStreetLine(1)) ?>" title="<?php echo $block->escapeHtmlAttr(__('Street Address')) ?>" id="street_1" class="input-text <?php echo $block->escapeHtmlAttr($_streetValidationClass) ?>"  />
                 <div class="nested">
                     <?php $_streetValidationClass = trim(str_replace('required-entry', '', $_streetValidationClass)); ?>
                     <?php for ($_i = 1, $_n = $this->helper(\Magento\Customer\Helper\Address::class)->getStreetLines(); $_i < $_n; $_i++): ?>
@@ -78,7 +78,7 @@
                                 <span><?php echo $block->escapeHtml(__('Street Address %1', $_i + 1)) ?></span>
                             </label>
                             <div class="control">
-                                <input type="text" name="street[]" value="<?php echo $this->helper(\Magento\Framework\EscapeHelper::class)->escapeHtmlAttr($block->getStreetLine($_i+1)) ?>" title="<?php  echo $this->helper(\Magento\Framework\EscapeHelper::class)->escapeHtmlAttr(__('Street Address %1', $_i + 1)) ?>" id="street_<?php /* @escapeNotVerified */ echo $_i+1 ?>" class="input-text <?php echo $this->helper(\Magento\Framework\EscapeHelper::class)->escapeHtmlAttr($_streetValidationClass) ?>">
+                                <input type="text" name="street[]" value="<?php echo $block->escapeHtmlAttr($block->getStreetLine($_i+1)) ?>" title="<?php  echo $block->escapeHtmlAttr(__('Street Address %1', $_i + 1)) ?>" id="street_<?php /* @escapeNotVerified */ echo $_i+1 ?>" class="input-text <?php echo $block->escapeHtmlAttr($_streetValidationClass) ?>">
                             </div>
                         </div>
                     <?php endfor; ?>
@@ -90,7 +90,7 @@
             <div class="field taxvat">
                 <label class="label" for="vat_id"><span><?php echo $block->escapeHtml(__('VAT Number')) ?></span></label>
                 <div class="control">
-                    <input type="text" name="vat_id" value="<?php echo $this->helper(\Magento\Framework\EscapeHelper::class)->escapeHtmlAttr($block->getAddress()->getVatId()) ?>" title="<?php echo $this->helper(\Magento\Framework\EscapeHelper::class)->escapeHtmlAttr(__('VAT Number')) ?>" class="input-text <?php echo $this->helper(\Magento\Framework\EscapeHelper::class)->escapeHtmlAttr($this->helper(\Magento\Customer\Helper\Address::class)->getAttributeValidationClass('vat_id')) ?>" id="vat_id">
+                    <input type="text" name="vat_id" value="<?php echo $block->escapeHtmlAttr($block->getAddress()->getVatId()) ?>" title="<?php echo $block->escapeHtmlAttr(__('VAT Number')) ?>" class="input-text <?php echo $block->escapeHtmlAttr($this->helper(\Magento\Customer\Helper\Address::class)->getAttributeValidationClass('vat_id')) ?>" id="vat_id">
                 </div>
             </div>
         <?php endif; ?>
@@ -118,7 +118,7 @@
     </fieldset>
     <div class="actions-toolbar">
         <div class="primary">
-            <button type="submit" class="action save primary" data-action="save-address" title="<?php echo $this->helper(\Magento\Framework\EscapeHelper::class)->escapeHtmlAttr(__('Save Address')) ?>">
+            <button type="submit" class="action save primary" data-action="save-address" title="<?php echo $block->escapeHtmlAttr(__('Save Address')) ?>">
                 <span><?php echo $block->escapeHtml(__('Save Address')) ?></span>
             </button>
         </div>
