@@ -65,7 +65,7 @@ class Precision
         $includeContainer = true,
         $addBrackets = false
     ) {
-        if (in_array($subject->getCode(), $this->helper->getIntegerCurrencies())) {
+        if ($subject->getCode() == 'JPY') {
             $precision = '0';
             if (isset($options['precision'])) {
                 $options['precision'] = '0';
