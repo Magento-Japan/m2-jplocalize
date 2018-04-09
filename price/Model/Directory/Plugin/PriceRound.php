@@ -76,7 +76,7 @@ class PriceRound
         $currency = null,
         $precision = PriceCurrency::DEFAULT_PRECISION
     ) {
-        if ($subject->getCurrency()->getCode() == 'JPY') {
+        if (in_array($subject->getCurrency()->getCode(), $this->helper->getIntegerCurrencies())) {
             /**
              * Rounding method
              *
@@ -107,7 +107,7 @@ class PriceRound
         $amount,
         $precision = 2
     ) {
-        if ($subject->getCurrency()->getCode() == 'JPY') {
+        if (in_array($subject->getCurrency()->getCode(), $this->helper->getIntegerCurrencies())) {
             /**
              * Rounding method
              *

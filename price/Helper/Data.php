@@ -64,6 +64,7 @@ class Data extends AbstractHelper
             'KMF',
             'XOF',
             'KRW',
+            'HUF',
             'XPF',
             'TWD'
         ];
