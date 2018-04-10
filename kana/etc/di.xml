@@ -32,6 +32,9 @@
     <type name="Magento\Quote\Model\Quote\Address\CustomAttributeList">
         <plugin name="assign_kana" type="Veriteworks\Kana\Plugin\Quote\Model\Quote\Address\AddKanaToAttributeList" sortOrder="100"/>
     </type>
+    <type name="Magento\Quote\Model\Quote\Address">
+        <plugin name="assign_kana" type="Veriteworks\Kana\Plugin\Quote\Model\Quote\Address\AppendKana" sortOrder="100"/>
+    </type>
 
     <type name="Magento\Customer\CustomerData\Customer">
         <plugin name="assign_lname" type="Veriteworks\Kana\Plugin\Customer\CustomerDataModifier" sortOrder="100"/>

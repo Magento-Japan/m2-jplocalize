@@ -25,6 +25,14 @@
                         <field id="use_kana">1</field>
                     </depends>
                 </field>
+                <field id="kana_type" translate="label" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Acceptable Kana character type on frontend</label>
+                    <source_model>Veriteworks\Kana\Model\Config\Source\Kana</source_model>
+                    <config_path>customer/address/kana_type</config_path>
+                    <depends>
+                        <field id="use_kana">1</field>
+                    </depends>
+                </field>
             </group>
             <group id="address" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Address format option</label>

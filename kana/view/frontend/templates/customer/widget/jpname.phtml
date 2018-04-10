@@ -22,6 +22,7 @@ $middle = $block->showMiddlename();
 $suffix = $block->showSuffix();
 $useKana = $block->getConfig('use_kana');
 $requireKana = $block->getConfig('require_kana');
+$kanaType = $block->getConfig('kana_type');
 ?>
 <?php if (($prefix || $middle || $suffix) && !$block->getNoWrap()): ?>
 <div class="field required fullname <?= $block->escapeHtmlAttr($block->getContainerClassName()) ?>">
@@ -133,25 +134,42 @@ $requireKana = $block->getConfig('require_kana');
     <?php endif; ?>
 
     <?php if($useKana):?>
+        <?php $rule = [] ;?>
+        <?php if($requireKana): ?>
+            <?php $rule[] = 'required:true';?>
+        <?php endif;?>
+        <?php if($kanaType == '1'): ?>
+            <?php $rule[] = "'validate-katakana':true";?>
+        <?php elseif($kanaType == '2'): ?>
+            <?php $rule[] = "'validate-hiragana':true";?>
+        <?php else: ?>
+            <?php $rule[] = "'validate-kana':true";?>
+        <?php endif;?>
+        <?php $rule = join(',', $rule);?>
         <div class="field name lastname <?php if($requireKana):?>required<?php endif;?>">
             <label class="label"  for="<?= $block->getFieldId('lastnamekana') ?>">
                 <span><?= $block->getStoreLabel('lastnamekana') ?></span>
             </label>
 
             <?php $attrLnameKana = $block->getObject()->getCustomAttribute('lastnamekana');?>
-            <?php $lnameKana = (is_object($attrLnameKana)) ? $attrLnameKana->getValue() : '';?>
-            <?php if(is_object($attrLnameKana)) :?>
+            <?php $lnameKana = '';?>
+            <?php if(!is_null($attrLnameKana) && is_object($attrLnameKana)) :?>
                 <?php $lnameKana = $attrLnameKana->getValue();?>
-            <?php elseif(method_exists($block->getObject(), 'getLastnamekana')):?>
-                <?php $lnameKana = $block->getObject()->getLastnamekana();?>
-            <?php endif;?>
+            <?php elseif(is_object($block->getObject())) :?>
+                <?php if(method_exists($block->getObject(), 'getLastnamekana')):?>
+                    <?php $lnameKana = $block->getObject()->getLastnamekana();?>
+                <?php elseif (method_exists($block->getObject(), '__toArray') && array_key_exists('lastnamekana', $block->getObject()->__toArray())): ?>
+                    <?php $lnameKana = $block->getObject()->getLastnamekana(); ?>
+                <?php endif;?>
+            <?php endif; ?>
 
             <div class="control">
                 <input type="text" id="<?= $block->getFieldId('lastnamekana') ?>"
                        name="<?= $block->getFieldName('lastnamekana') ?>"
                        value="<?php echo $block->escapeHtml($lnameKana) ?>"
                        title="<?= $block->getStoreLabel('lastnamekana') ?>"
-                       class="input-text <?php echo $block->getAttributeValidationClass('lastnamekana') ?>" <?= $block->getFieldParams() ?> <?php if($requireKana)  echo ' data-validate="{required:true}"' ?>>
+                       class="input-text <?php echo $block->getAttributeValidationClass('lastnamekana') ?>" <?= $block->getFieldParams() ?>
+                       <?php if ($rule): ?>data-validate="{<?= $rule; ?>}"<?php endif; ?>>
             </div>
         </div>
         <div class="field name firstname <?php if($requireKana):?>required<?php endif;?>">
@@ -160,18 +178,23 @@ $requireKana = $block->getConfig('require_kana');
             </label>
 
             <?php $attrFnameKana = $block->getObject()->getCustomAttribute('firstnamekana');?>
-            <?php $fnameKana = (is_object($attrFnameKana)) ? $attrFnameKana->getValue() : '';?>
+            <?php $fnameKana = '';?>
             <?php if(is_object($attrFnameKana)) :?>
                 <?php $fnameKana = $attrFnameKana->getValue();?>
-            <?php elseif(method_exists($block->getObject(), 'getFirstnamekana')):?>
-                <?php $fnameKana = $block->getObject()->getFirstnamekana();?>
-            <?php endif;?>
+            <?php elseif(is_object($block->getObject())) :?>
+                <?php if(method_exists($block->getObject(), 'getFirstnamekana')):?>
+                    <?php $fnameKana = $block->getObject()->getFirstnamekana();?>
+                <?php elseif (method_exists($block->getObject(), '__toArray') && array_key_exists('firstnamekana', $block->getObject()->__toArray())): ?>
+                    <?php $fnameKana = $block->getObject()->getFirstnamekana(); ?>
+                <?php endif;?>
+            <?php endif; ?>
             <div class="control">
                 <input type="text" id="<?= $block->getFieldId('firstnamekana') ?>"
                        name="<?= $block->getFieldName('firstnamekana') ?>"
                        value="<?php echo $block->escapeHtml($fnameKana) ?>"
                        title="<?= $block->getStoreLabel('firstnamekana') ?>"
-                       class="input-text <?= $block->getAttributeValidationClass('firstnamekana') ?>" <?= $block->getFieldParams() ?> <?php if($requireKana) echo ' data-validate="{required:true}"' ?>>
+                       class="input-text <?= $block->getAttributeValidationClass('firstnamekana') ?>" <?= $block->getFieldParams() ?>
+                       <?php if ($rule): ?>data-validate="{<?= $rule; ?>}"<?php endif; ?>>
             </div>
         </div>
     <?php endif;?>

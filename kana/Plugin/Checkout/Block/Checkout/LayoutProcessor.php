@@ -111,7 +111,9 @@ class LayoutProcessor
             ['children']['payments-list']['children'];
 
             foreach ($payments as $_key => &$method) {
-                $method['dataScopePrefix'] = $_key;
+                if(!isset($method['dataScopePrefix'])) {
+                    $method['dataScopePrefix'] = $_key;
+                }
                 $elements =& $method['children']['form-fields']['children'];
                 if (!is_array($elements)) {
                     $elements = [];
