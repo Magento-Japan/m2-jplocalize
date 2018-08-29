@@ -76,7 +76,9 @@ class LayoutProcessor
                 }
                 $path = self::CONFIG_ELEMENT_ORDER . $key;
                 $config = $this->helper->getConfigValue($path);
-                $shippingelement['sortOrder'] = $config;
+                if($config) {
+                    $shippingelement['sortOrder'] = $config;
+                }
 
                 if ($key == 'country_id' && $hideCountry) {
                     $shippingelement['visible'] = false;
@@ -125,7 +127,9 @@ class LayoutProcessor
                     }
                     $path = self::CONFIG_ELEMENT_ORDER . $key;
                     $config = $this->helper->getConfigValue($path);
-                    $billingElement['sortOrder'] = $config;
+                    if($config) {
+                        $billingElement['sortOrder'] = $config;
+                    }
 
                     if ($key == 'country_id' && $hideCountry) {
                         $billingElement['visible'] = false;

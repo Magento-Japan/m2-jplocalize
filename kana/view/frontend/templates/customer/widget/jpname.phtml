@@ -156,9 +156,11 @@ $kanaType = $block->getConfig('kana_type');
             <?php if(!is_null($attrLnameKana) && is_object($attrLnameKana)) :?>
                 <?php $lnameKana = $attrLnameKana->getValue();?>
             <?php elseif(is_object($block->getObject())) :?>
-                <?php if(!is_null($block->getObject()->getLastnamekana())):?>
+                <?php if(method_exists($block->getObject(), 'getLastnamekana')):?>
                     <?php $lnameKana = $block->getObject()->getLastnamekana();?>
                 <?php elseif (method_exists($block->getObject(), '__toArray') && array_key_exists('lastnamekana', $block->getObject()->__toArray())): ?>
+                    <?php $lnameKana = $block->getObject()->getLastnamekana(); ?>
+                <?php elseif (method_exists($block->getObject(), 'toArray') && array_key_exists('lastnamekana', $block->getObject()->toArray())): ?>
                     <?php $lnameKana = $block->getObject()->getLastnamekana(); ?>
                 <?php endif;?>
             <?php endif; ?>
@@ -182,9 +184,11 @@ $kanaType = $block->getConfig('kana_type');
             <?php if(is_object($attrFnameKana)) :?>
                 <?php $fnameKana = $attrFnameKana->getValue();?>
             <?php elseif(is_object($block->getObject())) :?>
-                <?php if(!is_null($block->getObject()->getFirstnamekana())):?>
+                <?php if(method_exists($block->getObject(), 'getFirstnamekana')):?>
                     <?php $fnameKana = $block->getObject()->getFirstnamekana();?>
                 <?php elseif (method_exists($block->getObject(), '__toArray') && array_key_exists('firstnamekana', $block->getObject()->__toArray())): ?>
+                    <?php $fnameKana = $block->getObject()->getFirstnamekana(); ?>
+                <?php elseif (method_exists($block->getObject(), 'toArray') && array_key_exists('firstnamekana', $block->getObject()->toArray())): ?>
                     <?php $fnameKana = $block->getObject()->getFirstnamekana(); ?>
                 <?php endif;?>
             <?php endif; ?>
