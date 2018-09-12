@@ -156,10 +156,12 @@ $kanaType = $block->getConfig('kana_type');
             <?php if(!is_null($attrLnameKana) && is_object($attrLnameKana)) :?>
                 <?php $lnameKana = $attrLnameKana->getValue();?>
             <?php elseif(is_object($block->getObject())) :?>
-                <?php if(!is_null($block->getObject()->getLastnamekana())):?>
+                <?php if($block->getObject() instanceof \Magento\Framework\DataObject && !is_null($block->getObject()->getLastnamekana())):?>
+                    <?php $lnameKana = $block->getObject()->getLastnamekana();?>
+                <?php elseif(method_exists($block->getObject(), 'getLastnamekana') && !is_null($block->getObject()->getLastnamekana())):?>
                     <?php $lnameKana = $block->getObject()->getLastnamekana();?>
                 <?php elseif (method_exists($block->getObject(), '__toArray') && array_key_exists('lastnamekana', $block->getObject()->__toArray())): ?>
-                    <?php $lnameKana = $block->getObject()->getLastnamekana(); ?>
+                    <?php $lnameKana = $block->getObject()->__toArray()['lastnamekana']; ?>
                 <?php endif;?>
             <?php endif; ?>
 
@@ -179,15 +181,18 @@ $kanaType = $block->getConfig('kana_type');
 
             <?php $attrFnameKana = $block->getObject()->getCustomAttribute('firstnamekana');?>
             <?php $fnameKana = '';?>
-            <?php if(is_object($attrFnameKana)) :?>
+            <?php if(!is_null($attrFnameKana) && is_object($attrFnameKana)) :?>
                 <?php $fnameKana = $attrFnameKana->getValue();?>
             <?php elseif(is_object($block->getObject())) :?>
-                <?php if(!is_null($block->getObject()->getFirstnamekana())):?>
+                <?php if($block->getObject() instanceof \Magento\Framework\DataObject && !is_null($block->getObject()->getFirstnamekana())):?>
+                    <?php $lnameKana = $block->getObject()->getFirstnamekana();?>
+                <?php elseif(method_exists($block->getObject(), 'getFirstnamekana') && !is_null($block->getObject()->getFirstnamekana())):?>
                     <?php $fnameKana = $block->getObject()->getFirstnamekana();?>
                 <?php elseif (method_exists($block->getObject(), '__toArray') && array_key_exists('firstnamekana', $block->getObject()->__toArray())): ?>
-                    <?php $fnameKana = $block->getObject()->getFirstnamekana(); ?>
+                    <?php $fnameKana = $block->getObject()->__toArray()['firstnamekana']; ?>
                 <?php endif;?>
             <?php endif; ?>
+
             <div class="control">
                 <input type="text" id="<?= $block->escapeHtmlAttr($block->getFieldId('firstnamekana')) ?>"
                        name="<?= $block->escapeHtmlAttr($block->getFieldName('firstnamekana')) ?>"
