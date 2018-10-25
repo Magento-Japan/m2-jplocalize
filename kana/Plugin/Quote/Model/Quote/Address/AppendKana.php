@@ -24,7 +24,5 @@ class AppendKana
                 $subject->setData($code, $data->getValue());
             }
         }
-
-
     }
 }
